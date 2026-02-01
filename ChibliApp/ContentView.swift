@@ -2,7 +2,7 @@
 //  ContentView.swift
 //  ChibliApp
 //
-//  Created by Olena Solovii AFT on 01.02.2026.
+//  Created by Hellen Soloviy on 01.02.2026.
 //
 
 import SwiftUI

@@ -6,6 +6,16 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		40CEC0C92F2F54A100344280 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 40CEC0C32F2F54A100344280 /* Preview Assets.xcassets */; };
+		40CEC0CA2F2F54A100344280 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 40CEC0C52F2F54A100344280 /* Assets.xcassets */; };
+		40CEC0CB2F2F54A100344280 /* ChibliAppApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40CEC0C62F2F54A100344280 /* ChibliAppApp.swift */; };
+		40CEC0CC2F2F54A100344280 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40CEC0C72F2F54A100344280 /* ContentView.swift */; };
+		40CEC0CF2F2F61D200344280 /* SampleDataFilms.json in Sources */ = {isa = PBXBuildFile; fileRef = 40CEC0CE2F2F61D200344280 /* SampleDataFilms.json */; };
+		40CEC0D22F2F623600344280 /* Film.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40CEC0D12F2F623600344280 /* Film.swift */; };
+		40CEC0D42F2F624100344280 /* Person.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40CEC0D32F2F624100344280 /* Person.swift */; };
+/* End PBXBuildFile section */
+
 /* Begin PBXContainerItemProxy section */
 		40CEC0A72F2F548000344280 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -27,14 +37,16 @@
 		40CEC0962F2F547D00344280 /* ChibliApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ChibliApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		40CEC0A62F2F548000344280 /* ChibliAppTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ChibliAppTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		40CEC0B02F2F548000344280 /* ChibliAppUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ChibliAppUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		40CEC0C32F2F54A100344280 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		40CEC0C52F2F54A100344280 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		40CEC0C62F2F54A100344280 /* ChibliAppApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChibliAppApp.swift; sourceTree = "<group>"; };
+		40CEC0C72F2F54A100344280 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		40CEC0CE2F2F61D200344280 /* SampleDataFilms.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = SampleDataFilms.json; sourceTree = "<group>"; };
+		40CEC0D12F2F623600344280 /* Film.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Film.swift; sourceTree = "<group>"; };
+		40CEC0D32F2F624100344280 /* Person.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Person.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
-		40CEC0982F2F547D00344280 /* ChibliApp */ = {
-			isa = PBXFileSystemSynchronizedRootGroup;
-			path = ChibliApp;
-			sourceTree = "<group>";
-		};
 		40CEC0A92F2F548000344280 /* ChibliAppTests */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
 			path = ChibliAppTests;
@@ -75,7 +87,7 @@
 		40CEC08D2F2F547D00344280 = {
 			isa = PBXGroup;
 			children = (
-				40CEC0982F2F547D00344280 /* ChibliApp */,
+				40CEC0C82F2F54A100344280 /* ChibliApp */,
 				40CEC0A92F2F548000344280 /* ChibliAppTests */,
 				40CEC0B32F2F548000344280 /* ChibliAppUITests */,
 				40CEC0972F2F547D00344280 /* Products */,
@@ -92,6 +104,44 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
+		40CEC0C42F2F54A100344280 /* Preview Content */ = {
+			isa = PBXGroup;
+			children = (
+				40CEC0C32F2F54A100344280 /* Preview Assets.xcassets */,
+				40CEC0CE2F2F61D200344280 /* SampleDataFilms.json */,
+			);
+			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		40CEC0C82F2F54A100344280 /* ChibliApp */ = {
+			isa = PBXGroup;
+			children = (
+				40CEC0D02F2F621F00344280 /* Models */,
+				40CEC0C42F2F54A100344280 /* Preview Content */,
+				40CEC0CD2F2F616D00344280 /* Resources */,
+				40CEC0C62F2F54A100344280 /* ChibliAppApp.swift */,
+				40CEC0C72F2F54A100344280 /* ContentView.swift */,
+			);
+			path = ChibliApp;
+			sourceTree = "<group>";
+		};
+		40CEC0CD2F2F616D00344280 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				40CEC0C52F2F54A100344280 /* Assets.xcassets */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		40CEC0D02F2F621F00344280 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				40CEC0D12F2F623600344280 /* Film.swift */,
+				40CEC0D32F2F624100344280 /* Person.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -106,9 +156,6 @@
 			buildRules = (
 			);
 			dependencies = (
-			);
-			fileSystemSynchronizedGroups = (
-				40CEC0982F2F547D00344280 /* ChibliApp */,
 			);
 			name = ChibliApp;
 			packageProductDependencies = (
@@ -212,6 +259,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				40CEC0C92F2F54A100344280 /* Preview Assets.xcassets in Resources */,
+				40CEC0CA2F2F54A100344280 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -236,6 +285,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				40CEC0D42F2F624100344280 /* Person.swift in Sources */,
+				40CEC0CB2F2F54A100344280 /* ChibliAppApp.swift in Sources */,
+				40CEC0D22F2F623600344280 /* Film.swift in Sources */,
+				40CEC0CF2F2F61D200344280 /* SampleDataFilms.json in Sources */,
+				40CEC0CC2F2F54A100344280 /* ContentView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -411,6 +465,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = hellensoloviy.ChibliApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_STRICT_CONCURRENCY = targeted;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -439,6 +494,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = hellensoloviy.ChibliApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_STRICT_CONCURRENCY = targeted;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
