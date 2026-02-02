@@ -28,7 +28,9 @@ struct FilmListView: View {
                 
             case .loaded(let models):
                 List(models) { obj in
-                    Text(obj.title)
+                    NavigationLink(value: obj) {
+                        Text(obj.title)
+                    }
                 }
                 .navigationTitle("Fims")
                 .navigationBarTitleDisplayMode(.large)

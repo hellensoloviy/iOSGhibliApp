@@ -63,15 +63,24 @@ class FilmDetailsViewModel {
 //
 //#Playground {
 //
-//    let vm = FilmDetailsView(service: MockChibliService())
-//    
+//    let service = MockChibliService()
+//    let vm = FilmDetailsView(service: service)
+//
 //    do {
-//        let film = try await MockChibliService().fetchFilm()
+//        let film = try await service.fetchFilm()
 //        await vm.viewModel.fetch(for: film)
+//        
+//        
+//        switch vm.state {
+//        case .loading: print("loading")
+//        case .idle: print("idle")
+//        case .error(let error): print("Error! \(error.debugDescription)")
+//        case .loaded(let result): print("Loaded! Cast count: \(result.count)")
+//        case .empty: print("empty")
+//        }
+//        
 //    } catch {
 //        print("Playground FilmDetailsVM Error \(error)")
 //    }
 //    
-//    print(vm.people)
-//
 //}

@@ -12,7 +12,7 @@ import Foundation
  For Model got from https://ghibliapi.vercel.app/films
  */
 
-struct Film: Codable, Identifiable, Equatable {
+struct Film: Codable, Identifiable, Equatable, Hashable {
     
     let id: String
     let title: String

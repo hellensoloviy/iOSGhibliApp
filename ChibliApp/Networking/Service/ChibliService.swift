@@ -74,8 +74,8 @@ struct MockChibliService: ChibliService {
     }
     
     /// Film with cast present, Princess Mononoke
-    func fetchFilm() async throws -> Film {
-        let film = try loadFilm()
+    func fetchFilm() -> Film {
+        let film = try! loadFilm()
         return film
     }
     
