@@ -27,15 +27,16 @@ struct Film: Codable, Identifiable, Equatable {
     let image: String
     let bannerImage: String
     
-    let people: [String]
+    let castList: [String]
     
     enum CodingKeys: String, CodingKey {
-        case id, title, image, description, director, producer, people
+        case id, title, image, description, director, producer
         
         case bannerImage = "movie_banner"
         case releaseYear = "release_date"
         case duration = "running_time"
         case score = "rt_score"
+        case castList = "people"
     }
      
 }

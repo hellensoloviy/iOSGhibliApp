@@ -7,17 +7,28 @@
 
 import Foundation
 
-protocol ChibliService {
+protocol ChibliService: Sendable {
     func fetchFilms() async throws -> [Film]
-    func fetchPersonDetails() async throws -> Person
+    func fetchPersonDetails(from stringURL: String) async throws -> Person
 }
 
 struct DefaultChibliService: ChibliService {
     
+    
     func fetchFilms() async throws -> [Film] {
-        
-        //TODO: - URL not static
-        guard let url = URL(string: "https://ghibliapi.vercel.app/films") else {
+        let result = try await fetch([Film].self, from: "https://ghibliapi.vercel.app/films")
+        return result
+    }
+    
+    func fetchPersonDetails(from stringURL: String) async throws -> Person {
+        let result = try await fetch(Person.self, from: stringURL)
+        return result
+    }
+    
+    //MARK: - Private
+    
+    private func fetch<T>(_ type: T.Type, from urlString: String) async throws -> T where T: Decodable {
+        guard let url = URL(string: urlString) else {
             throw APIError.invalidURL
         }
     
@@ -28,21 +39,17 @@ struct DefaultChibliService: ChibliService {
                 throw APIError.invalidResponse
             }
             
-            let models = try JSONDecoder().decode([Film].self, from: data)
+            let models = try JSONDecoder().decode(T.self, from: data)
             return models
             
         } catch let error as DecodingError {
-            print("[FilmsViewModel] DecodingError \(error)")
+            print("[DefaultChibliService] DecodingError \(error)")
             throw APIError.decodingError(error)
         } catch let error as URLError {
-            print("[FilmsViewModel] URLError \(error)")
+            print("[DefaultChibliService] URLError \(error)")
             throw APIError.networkError(error)
         }
-    
-    }
-    
-    func fetchPersonDetails() async throws -> Person {
-        return Person(id: "", name: "", gender: "", age: "", eyeColor: "", hairColor: "", url: "", species: "", films: [])
+        
     }
     
     
@@ -57,17 +64,65 @@ struct MockChibliService: ChibliService {
     }
 
     func fetchFilms() async throws -> [Film] {
-        
         let data = try loadLocalJSON()
         
         return data
     }
     
-    func fetchPersonDetails() async throws -> Person {
+    func fetchPersonDetails(from stringURL: String) async throws -> Person {
         return Person(id: "", name: "", gender: "", age: "", eyeColor: "", hairColor: "", url: "", species: "", films: [])
     }
     
+    /// Film with cast present, Princess Mononoke
+    func fetchFilm() async throws -> Film {
+        let film = try loadFilm()
+        return film
+    }
+    
+    /// Film with no people present - animation
+    func fetchFilm_NoPeople() async throws -> Film {
+        let film = try loadFilm_NoPeople()
+        return film
+    }
+    
     //MARK: - Private
+    private func loadFilm() throws -> Film {
+        guard let url = Bundle.main.url(forResource: "Film_2", withExtension: "json") else {
+            throw APIError.invalidURL
+        }
+
+        do {
+            let data = try Data(contentsOf: url)
+            let resultData = try JSONDecoder().decode(Film.self, from: data)
+            return resultData
+        } catch let error as DecodingError {
+            print("[MockChibliService] DecodingError \(error)")
+            throw APIError.decodingError(error)
+        } catch {
+            print("[MockChibliService] URLError \(error)")
+            throw APIError.networkError(error)
+        }
+        
+    }
+    
+    private func loadFilm_NoPeople() throws -> Film {
+        guard let url = Bundle.main.url(forResource: "Film_1", withExtension: "json") else {
+            throw APIError.invalidURL
+        }
+
+        do {
+            let data = try Data(contentsOf: url)
+            let resultData = try JSONDecoder().decode(Film.self, from: data)
+            return resultData
+        } catch let error as DecodingError {
+            print("[MockChibliService] DecodingError \(error)")
+            throw APIError.decodingError(error)
+        } catch {
+            print("[MockChibliService] URLError \(error)")
+            throw APIError.networkError(error)
+        }
+        
+    }
     
     private func loadLocalJSON() throws -> [Film] {
         guard let url = Bundle.main.url(forResource: "SampleDataFilms", withExtension: "json") else {

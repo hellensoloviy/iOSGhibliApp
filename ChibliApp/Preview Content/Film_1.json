@@ -1,0 +1,27 @@
+{
+  "id": "cd3d059c-09f4-4ff3-8d63-bc765a5184fa",
+  "title": "Howl's Moving Castle",
+  "original_title": "ハウルの動く城",
+  "original_title_romanised": "Hauru no ugoku shiro",
+  "image": "https://image.tmdb.org/t/p/w600_and_h900_bestv2/TkTPELv4kC3u1lkloush8skOjE.jpg",
+  "movie_banner": "https://image.tmdb.org/t/p/original/hjlvbMKhQm7N8tYynr8yQ8GBmqe.jpg",
+  "description": "When Sophie, a shy young woman, is cursed with an old body by a spiteful witch, her only chance of breaking the spell lies with a self-indulgent yet insecure young wizard and his companions in his legged, walking home.",
+  "director": "Hayao Miyazaki",
+  "producer": "Toshio Suzuki",
+  "release_date": "2004",
+  "running_time": "119",
+  "rt_score": "87",
+  "people": [
+    "https://ghibliapi.vercel.app/people/"
+  ],
+  "species": [
+    "https://ghibliapi.vercel.app/species/af3910a6-429f-4c74-9ad5-dfe1c4aa04f2"
+  ],
+  "locations": [
+    "https://ghibliapi.vercel.app/locations/"
+  ],
+  "vehicles": [
+    "https://ghibliapi.vercel.app/vehicles/"
+  ],
+  "url": "https://ghibliapi.vercel.app/films/cd3d059c-09f4-4ff3-8d63-bc765a5184fa"
+}

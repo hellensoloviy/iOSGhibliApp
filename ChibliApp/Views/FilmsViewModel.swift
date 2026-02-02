@@ -20,7 +20,6 @@ class FilmsViewModel {
         case error(String)
     }
     
-    
     var models: [Film] = []
     var state: State = .idle
     
