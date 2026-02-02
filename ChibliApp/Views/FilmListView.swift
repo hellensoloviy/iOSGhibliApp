@@ -7,9 +7,16 @@
 
 import SwiftUI
 
+#Preview {
+    @Previewable @State var vm = FilmsViewModel(service: MockChibliService())
+    
+    FilmListView(viewModel: vm)
+}
+
+
 struct FilmListView: View {
     
-    @State private var viewModel = FilmsViewModel()
+    @State var viewModel: FilmsViewModel
     
     var films: [Film] = []
     
@@ -23,6 +30,9 @@ struct FilmListView: View {
                 List(models) { obj in
                     Text(obj.title)
                 }
+                .navigationTitle("Fims")
+                .navigationBarTitleDisplayMode(.large)
+                
             case .loading:
                 ProgressView {
                     Text("Loadig the list...")
@@ -40,13 +50,9 @@ struct FilmListView: View {
                     /// nothing here for now
                 }
                 .offset(y: -60)
-            
-
 
             }
         }
-        .navigationTitle("Fims")
-        .navigationBarTitleDisplayMode(.large)
         .task {
             await viewModel.fetch()
         }
@@ -54,6 +60,3 @@ struct FilmListView: View {
     }
 }
 
-#Preview {
-    FilmListView()
-}
