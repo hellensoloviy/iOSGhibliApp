@@ -16,9 +16,9 @@ enum APIError: LocalizedError {
     var customDescription: String? {
         switch self {
         case .decodingError(let error):
-            return "Failed to decode with error: \n \(error.localizedDescription) \n"
+            return "Failed to decode with error:\n\(error.localizedDescription) \n"
         case .networkError(let error):
-            return "Network error: \n \(error.localizedDescription) \n"
+            return "Network error:\n\(error.localizedDescription) \n"
         case .invalidResponse:
             return "The response is invalid."
         case .invalidURL:

@@ -33,9 +33,9 @@ class FilmsViewModel {
             let models = try await fetchFilms()
             self.state = .loaded(models)
         } catch let error as APIError {
-            self.state = .error(error.customDescription ?? "Unknown APIError appeared. Please refer to [Fi lmsViewModel.fetch]")
+            self.state = .error(error.customDescription ?? "Unknown APIError appeared. Please refer to [FilmsViewModel.fetch]")
         } catch {
-            self.state = .error("Unknown error appeared. Please refer to [Fi lmsViewModel.fetch]")
+            self.state = .error("Unknown error appeared. Please refer to [FilmsViewModel.fetch]")
         }
     }
     
