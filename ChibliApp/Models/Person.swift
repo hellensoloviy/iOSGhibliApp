@@ -13,7 +13,7 @@
 
 import Foundation
 
-struct Person: Codable, Identifiable, Equatable {
+struct Person: Codable, Identifiable, Equatable, Hashable {
     
     let id: String
     let name: String

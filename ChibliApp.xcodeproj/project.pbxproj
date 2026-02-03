@@ -24,6 +24,7 @@
 		40CEC0CC2F2F54A100344280 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40CEC0C72F2F54A100344280 /* ContentView.swift */; };
 		40CEC0D22F2F623600344280 /* Film.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40CEC0D12F2F623600344280 /* Film.swift */; };
 		40CEC0D42F2F624100344280 /* Person.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40CEC0D32F2F624100344280 /* Person.swift */; };
+		40DC8F9C2F31F3EC003C4952 /* FilmImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40DC8F9B2F31F3EC003C4952 /* FilmImageView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -64,6 +65,7 @@
 		40CEC0CE2F2F61D200344280 /* SampleDataFilms.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = SampleDataFilms.json; sourceTree = "<group>"; };
 		40CEC0D12F2F623600344280 /* Film.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Film.swift; sourceTree = "<group>"; };
 		40CEC0D32F2F624100344280 /* Person.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Person.swift; sourceTree = "<group>"; };
+		40DC8F9B2F31F3EC003C4952 /* FilmImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilmImageView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
@@ -153,6 +155,7 @@
 			children = (
 				40CC6FC12F30CABA00C0938D /* FilmDetailsViewModel.swift */,
 				40CC6FC32F30CC3300C0938D /* FilmDetailsView.swift */,
+				40DC8F9A2F31F3DF003C4952 /* SubView */,
 			);
 			path = FilmsDetails;
 			sourceTree = "<group>";
@@ -226,6 +229,14 @@
 				40CEC0D32F2F624100344280 /* Person.swift */,
 			);
 			path = Models;
+			sourceTree = "<group>";
+		};
+		40DC8F9A2F31F3DF003C4952 /* SubView */ = {
+			isa = PBXGroup;
+			children = (
+				40DC8F9B2F31F3EC003C4952 /* FilmImageView.swift */,
+			);
+			path = SubView;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -382,6 +393,7 @@
 				40CEC0D22F2F623600344280 /* Film.swift in Sources */,
 				40CC6FC62F30D3E900C0938D /* Film_1.json in Sources */,
 				40CC6FBA2F30A69400C0938D /* Errors.swift in Sources */,
+				40DC8F9C2F31F3EC003C4952 /* FilmImageView.swift in Sources */,
 				40CC6FCF2F30ED6200C0938D /* FilmsListRow.swift in Sources */,
 				40CC6FC22F30CABA00C0938D /* FilmDetailsViewModel.swift in Sources */,
 				40CC6FAC2F3099B000C0938D /* FilmsViewModel.swift in Sources */,

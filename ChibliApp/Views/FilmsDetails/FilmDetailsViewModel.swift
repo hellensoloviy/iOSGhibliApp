@@ -8,6 +8,7 @@
 import Foundation
 import Observation
 
+@Observable
 class FilmDetailsViewModel {
     
     enum State: Equatable {
@@ -27,8 +28,7 @@ class FilmDetailsViewModel {
     }
     
     func fetch(for film: Film) async {
-             
-        guard state != .idle else { return } /// maybe == .idle?
+        guard state != .loading else { return }
         state = .loading
         
         var loadedCast: [Person] = []

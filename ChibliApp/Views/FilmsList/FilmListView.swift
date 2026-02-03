@@ -29,13 +29,22 @@ struct FilmListView: View {
             case .loaded(let models):
                 List(models) { obj in
                     NavigationLink(value: obj) {
-                        Text(obj.title)
+                        HStack {
+                            //TODO: - fix placeholder loading frame to be equal 
+                            FilmImageView(urlPath: obj.image)
+                                .frame(height: 150)
+                            Text(obj.title)
+                        }
                     }
                 }
                 .navigationTitle("Fims")
                 .navigationBarTitleDisplayMode(.large)
+                .navigationDestination(for: Film.self) { obj in
+                    FilmDetailsView(model: obj)
+                }
                 
             case .loading:
+                    //TODO: - add effect here
                 ProgressView {
                     Text("Loadig the list...")
                 }
@@ -45,9 +54,9 @@ struct FilmListView: View {
                 
             case .empty:
                 ContentUnavailableView {
-                    Label("Nothing to show", systemImage: "list.bullet.rectangle.portrait")
+                    Label("Nothing to show", systemImage: "moon.dust")
                 } description: {
-                    Text("The list if empty")
+                    Text("The list is empty")
                 } actions: {
                     /// nothing here for now
                 }
