@@ -11,7 +11,10 @@ import SwiftUI
 struct ChibliAppApp: App {
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            ContentView(
+                filmsViewModel: FilmsViewModel(),
+                favoritesViewModel: FavoritesViewModel(storageService: FavoriteFilmsStorageService())
+            )
         }
     }
 }

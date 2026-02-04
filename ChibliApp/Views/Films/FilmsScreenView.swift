@@ -10,6 +10,7 @@ import SwiftUI
 struct FilmsScreenView: View {
     
     let viewModel: FilmsViewModel
+    let favoritesViewModel: FavoritesViewModel
     
     var body: some View {
         
@@ -53,5 +54,8 @@ struct FilmsScreenView: View {
 }
 
 #Preview {
-    FilmsScreenView(viewModel: FilmsViewModel(service: MockChibliService()))
+    FilmsScreenView(
+        viewModel: FilmsViewModel(service: MockChibliService()),
+        favoritesViewModel: FavoritesViewModel(storageService: MockFavoriteFilmsStorageService())
+    )
 }
