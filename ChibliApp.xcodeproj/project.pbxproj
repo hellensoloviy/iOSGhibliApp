@@ -199,9 +199,9 @@
 		40CE51A12F333CCD004AB32D /* Films */ = {
 			isa = PBXGroup;
 			children = (
+				40CE51A22F333CEB004AB32D /* FilmsScreenView.swift */,
 				40CC6FCB2F30ED3E00C0938D /* FilmsList */,
 				40CC6FCC2F30ED4600C0938D /* FilmsDetails */,
-				40CE51A22F333CEB004AB32D /* FilmsScreenView.swift */,
 			);
 			path = Films;
 			sourceTree = "<group>";

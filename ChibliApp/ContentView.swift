@@ -8,13 +8,16 @@
 import SwiftUI
 
 struct ContentView: View {
+    
+    @State var filmsViewModel = FilmsViewModel()
+    
     var body: some View {
         TabView {
             Tab("Movies", systemImage: "movieclapper") {
-                FilmsScreenView()
+                FilmsScreenView(viewModel: filmsViewModel)
             }
             Tab("Favorites", systemImage: "heart") {
-                FavoritesScreenView()
+                FavoritesScreenView(viewModel: filmsViewModel)
             }
             Tab("Settigs", systemImage: "gear") {
                 SettingsScreenView()
@@ -28,5 +31,8 @@ struct ContentView: View {
 }
 
 #Preview {
-    ContentView()
+    
+    @Previewable @State var vm = FilmsViewModel(service: MockChibliService())
+    ContentView(filmsViewModel: vm)
+    
 }

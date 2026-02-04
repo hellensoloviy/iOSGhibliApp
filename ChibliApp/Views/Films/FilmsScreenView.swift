@@ -9,11 +9,49 @@ import SwiftUI
 
 struct FilmsScreenView: View {
     
+    let viewModel: FilmsViewModel
+    
     var body: some View {
-        FilmListView(viewModel: FilmsViewModel())
+        
+        NavigationStack {
+            Group {
+                switch viewModel.state {
+                case .idle:
+                    Text("Nothing here yet.")
+                    
+                case .loaded(let models):
+                    FilmListView(models: models)
+                    
+                case .loading:
+                    //TODO: - add effect here
+                    ProgressView {
+                        Text("Loadig the list...")
+                    }
+                case .error(let error):
+                    Text("Error! \(error.description)")
+                        .foregroundStyle(.pink)
+                    
+                case .empty:
+                    ContentUnavailableView {
+                        Label("Nothing to show", systemImage: "moon.dust")
+                    } description: {
+                        Text("The list is empty")
+                    } actions: {
+                        /// nothing here for now
+                    }
+                    .offset(y: -60)
+                }
+            }
+            .navigationTitle("Chibli Movies")
+            .navigationBarTitleDisplayMode(.large)
+
+        }
+        .task {
+            await viewModel.fetch()
+        }
     }
 }
 
 #Preview {
-    FavoritesScreenView()
+    FilmsScreenView(viewModel: FilmsViewModel(service: MockChibliService()))
 }
