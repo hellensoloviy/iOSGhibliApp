@@ -18,6 +18,7 @@
 		40CC6FC82F30D42500C0938D /* Film_2.json in Resources */ = {isa = PBXBuildFile; fileRef = 40CC6FC72F30D42000C0938D /* Film_2.json */; };
 		40CC6FCA2F30EB4D00C0938D /* Person.json in Resources */ = {isa = PBXBuildFile; fileRef = 40CC6FC92F30EB4700C0938D /* Person.json */; };
 		40CC6FCF2F30ED6200C0938D /* FilmsListRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40CC6FCE2F30ED6200C0938D /* FilmsListRow.swift */; };
+		40CE51982F333732004AB32D /* URL+ImageAssets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40CE51972F333732004AB32D /* URL+ImageAssets.swift */; };
 		40CEC0C92F2F54A100344280 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 40CEC0C32F2F54A100344280 /* Preview Assets.xcassets */; };
 		40CEC0CA2F2F54A100344280 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 40CEC0C52F2F54A100344280 /* Assets.xcassets */; };
 		40CEC0CB2F2F54A100344280 /* ChibliAppApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40CEC0C62F2F54A100344280 /* ChibliAppApp.swift */; };
@@ -55,6 +56,7 @@
 		40CC6FC72F30D42000C0938D /* Film_2.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = Film_2.json; sourceTree = "<group>"; };
 		40CC6FC92F30EB4700C0938D /* Person.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = Person.json; sourceTree = "<group>"; };
 		40CC6FCE2F30ED6200C0938D /* FilmsListRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilmsListRow.swift; sourceTree = "<group>"; };
+		40CE51972F333732004AB32D /* URL+ImageAssets.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "URL+ImageAssets.swift"; sourceTree = "<group>"; };
 		40CEC0962F2F547D00344280 /* ChibliApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ChibliApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		40CEC0A62F2F548000344280 /* ChibliAppTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ChibliAppTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		40CEC0B02F2F548000344280 /* ChibliAppUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ChibliAppUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -196,6 +198,7 @@
 				40CC6FC72F30D42000C0938D /* Film_2.json */,
 				40CC6FC92F30EB4700C0938D /* Person.json */,
 				40CEC0C32F2F54A100344280 /* Preview Assets.xcassets */,
+				40CE51972F333732004AB32D /* URL+ImageAssets.swift */,
 			);
 			path = "Preview Content";
 			sourceTree = "<group>";
@@ -391,6 +394,7 @@
 				40CEC0D42F2F624100344280 /* Person.swift in Sources */,
 				40CEC0CB2F2F54A100344280 /* ChibliAppApp.swift in Sources */,
 				40CEC0D22F2F623600344280 /* Film.swift in Sources */,
+				40CE51982F333732004AB32D /* URL+ImageAssets.swift in Sources */,
 				40CC6FC62F30D3E900C0938D /* Film_1.json in Sources */,
 				40CC6FBA2F30A69400C0938D /* Errors.swift in Sources */,
 				40DC8F9C2F31F3EC003C4952 /* FilmImageView.swift in Sources */,

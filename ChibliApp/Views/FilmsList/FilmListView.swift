@@ -32,7 +32,7 @@ struct FilmListView: View {
                         HStack {
                             //TODO: - fix placeholder loading frame to be equal 
                             FilmImageView(urlPath: obj.image)
-                                .frame(height: 150)
+                                .frame(width: 100, height: 150)
                             Text(obj.title)
                         }
                     }

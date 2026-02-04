@@ -9,11 +9,20 @@ import SwiftUI
 
 struct FilmImageView: View {
     
-    var urlPath: String
+    var url: URL?
+    
+    init(url: URL?) {
+        self.url = url
+    }
+    
+    init(urlPath: String) {
+        self.url = URL(string: urlPath)
+    }
+    
     
     var body: some View {
 
-        AsyncImage(url: URL(string: urlPath)) { phase in
+        AsyncImage(url: url) { phase in
             
             switch phase {
             case .empty:
@@ -26,7 +35,7 @@ struct FilmImageView: View {
             case .success(let image):
                 image
                     .resizable()
-                    .aspectRatio(contentMode: .fit)
+                    .aspectRatio(contentMode: .fill)
             case .failure(let error):
                 Label("The image could not be loaded. \nError: \(error.localizedDescription)", systemImage: "moon.dust")
             @unknown default:
@@ -44,17 +53,20 @@ struct FilmImageView: View {
      "movie_banner": "https://image.tmdb.org/t/p/original/etqr6fOOCXQOgwrQXaKwenTSuzx.jpg",
      */
     
-    let image = "https://image.tmdb.org/t/p/w600_and_h900_bestv2/rtGDOeG9LzoerkDGZF9dnVeLppL.jpg"
-    let banner = "https://image.tmdb.org/t/p/original/etqr6fOOCXQOgwrQXaKwenTSuzx.jpg"
+    let url = URL.convertAssetImage(named: "bannerImage")
+//    let url = URL.convertAssetImage(named: "posterImage")
+    FilmImageView(url: url)
     
-    FilmImageView(urlPath: banner)
 }
 
 #Preview("Empty") {
-    FilmImageView(urlPath: "")
+    
+    let url = URL(string: "")
+    FilmImageView(url: nil)
 }
 
 #Preview("Error") {
+    
     FilmImageView(urlPath: "987")
 }
 
