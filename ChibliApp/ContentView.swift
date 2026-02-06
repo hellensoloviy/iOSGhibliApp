@@ -18,7 +18,7 @@ struct ContentView: View {
                 FilmsScreenView(viewModel: filmsViewModel, favoritesViewModel: favoritesViewModel)
             }
             Tab("Favorites", systemImage: "heart") {
-                FavoritesScreenView(viewModel: filmsViewModel)
+                FavoritesScreenView(viewModel: filmsViewModel, favoritesViewModel: favoritesViewModel)
             }
             Tab("Settigs", systemImage: "gear") {
                 SettingsScreenView()

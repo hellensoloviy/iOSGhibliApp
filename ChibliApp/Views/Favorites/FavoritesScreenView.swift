@@ -10,6 +10,8 @@ import SwiftUI
 struct FavoritesScreenView: View {
     
     let viewModel: FilmsViewModel
+    let favoritesViewModel: FavoritesViewModel
+
     
     var models: [Film] {
         //TODO: - logic for favorites
@@ -22,7 +24,7 @@ struct FavoritesScreenView: View {
                 if viewModel.models.isEmpty {
                     ContentUnavailableView("No favorites yet", systemImage: "heart")
                 } else {
-                    FilmListView(models: viewModel.models)
+                    FilmListView(models: viewModel.models, favoritesViewModel: favoritesViewModel)
                 }
             }
             .navigationTitle("Favorites")
@@ -33,5 +35,6 @@ struct FavoritesScreenView: View {
 }
 
 #Preview {
-    FavoritesScreenView(viewModel: FilmsViewModel(service: MockChibliService()))
+    FavoritesScreenView(viewModel: FilmsViewModel(service: MockChibliService()),
+                        favoritesViewModel: FavoritesViewModel(storageService: MockFavoriteFilmsStorageService()))
 }

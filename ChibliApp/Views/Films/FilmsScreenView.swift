@@ -21,7 +21,7 @@ struct FilmsScreenView: View {
                     Text("Nothing here yet.")
                     
                 case .loaded(let models):
-                    FilmListView(models: models)
+                    FilmListView(models: models, favoritesViewModel: favoritesViewModel)
                     
                 case .loading:
                     //TODO: - add effect here
