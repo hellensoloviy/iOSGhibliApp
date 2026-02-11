@@ -48,7 +48,7 @@ struct FilmListView: View {
             }
         }
         .navigationDestination(for: Film.self) { obj in
-            FilmDetailsView(model: obj)
+            FilmDetailsView(favoritedViewModel: favoritesViewModel, model: obj)
         }
         .containerShape(.rect(cornerRadius: 20, style: .continuous))
         
@@ -123,17 +123,7 @@ private struct FilmRow: View {
                 }
                 .padding(.bottom)
                 
-                
-                Button {
-                    favoritesViewModel.toggleFavorite(filmID: model.id)
-                } label: {
-                    Image(systemName: isFavorite ? "heart.fill" : "heart")
-                        .font(.system(size: 20))
-                        .foregroundStyle(isFavorite ? .pink : .gray)
-                }
-                .controlSize(.large)
-                .buttonStyle(.borderless) /// to have it react to the taps inside Navigation Link
-                .accessibilityHint("Is Favorite button")
+                FilmFavoriteButton(filmID: model.id, favoritesViewModel: favoritesViewModel, isLarge: true)
                 
             }
             

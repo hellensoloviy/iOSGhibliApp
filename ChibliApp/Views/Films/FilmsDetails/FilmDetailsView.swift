@@ -10,8 +10,11 @@ import SwiftUI
 #Preview {
     let service = MockChibliService()
     let film = service.fetchFilm()
-    
-    FilmDetailsView(model: film)
+    var vm2 = FavoritesViewModel(storageService: MockFavoriteFilmsStorageService())
+
+    NavigationStack {
+        FilmDetailsView(favoritedViewModel: vm2, model: film)
+    }
 }
 
 
@@ -19,7 +22,8 @@ struct FilmDetailsView: View {
     
     @State var viewModel: FilmDetailsViewModel = FilmDetailsViewModel()
     
-    var model: Film
+    let favoritedViewModel: FavoritesViewModel
+    let model: Film
 
     var body: some View {
         
@@ -31,7 +35,7 @@ struct FilmDetailsView: View {
                     .containerRelativeFrame(.horizontal)
                 
                 //            VStack {
-                //                
+                //
                 //            }
                 //            .navigationTitle(model.title)
                 //            .navigationBarTitleDisplayMode(.large)
@@ -77,12 +81,17 @@ struct FilmDetailsView: View {
                 .padding()
                 
             }
+            .toolbar {
+                FilmFavoriteButton(filmID: model.id, favoritesViewModel: favoritedViewModel, isLarge: false)
+            }
+
             /// If we add here task(id: model) with model inside it will update the task when the model is changed;
             /// Now we do not track any changes here so we can leave it just task {}
             /// when we search for example, this can lessen the times it runs
-            .task {
+            .task(id: model) {
                 await viewModel.fetch(for: model)
             }
+
         }
         
     }
