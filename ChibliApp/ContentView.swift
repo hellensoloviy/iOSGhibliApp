@@ -27,7 +27,10 @@ struct ContentView: View {
             Tab(role: .search) {
                 SearchScreenView()
             }
-        } 
+        }
+        .task {
+            favoritesViewModel.load()
+        }
     }
 }
 

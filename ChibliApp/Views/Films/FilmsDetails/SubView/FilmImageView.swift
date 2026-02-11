@@ -22,25 +22,55 @@ struct FilmImageView: View {
     
     var body: some View {
 
-        AsyncImage(url: url) { phase in
-            
-            switch phase {
-            case .empty:
-                Color.cyan.opacity(0.2)
-                    .overlay {
-                        ProgressView()
-                            .controlSize(.large)
-                    }
+        if #available(iOS 26.0, *) {
+            AsyncImage(url: url) { phase in
+                
+                switch phase {
+                case .empty:
+                    Color.cyan.opacity(0.2)
+                        .overlay {
+                            ProgressView()
+                                .controlSize(.large)
+                        }
                     
-            case .success(let image):
-                image
-                    .resizable()
-                    .aspectRatio(contentMode: .fill)
-            case .failure(let error):
-                Label("The image could not be loaded. \nError: \(error.localizedDescription)", systemImage: "moon.dust")
-            @unknown default:
-                fatalError("[FilmImageView] Something went wrong with the image loading.")
+                case .success(let image):
+                    image
+                        .resizable()
+                        .aspectRatio(contentMode: .fill)
+                    
+                case .failure(let error):
+                    Label("The image could not be loaded. \nError: \(error.localizedDescription)", systemImage: "moon.dust")
+                @unknown default:
+                    fatalError("[FilmImageView] Something went wrong with the image loading.")
+                }
             }
+            .clipShape(.rect(corners: .concentric)) //TODO: - check on laters HIG for concentric
+            
+        } else {
+            // Fallback on earlier versions
+            
+            AsyncImage(url: url) { phase in
+                
+                switch phase {
+                case .empty:
+                    Color.cyan.opacity(0.2)
+                        .overlay {
+                            ProgressView()
+                                .controlSize(.large)
+                        }
+                    
+                case .success(let image):
+                    image
+                        .resizable()
+                        .aspectRatio(contentMode: .fill)
+                    
+                case .failure(let error):
+                    Label("The image could not be loaded. \nError: \(error.localizedDescription)", systemImage: "moon.dust")
+                @unknown default:
+                    fatalError("[FilmImageView] Something went wrong with the image loading.")
+                }
+            }
+            .cornerRadius(20)
         }
 
     }

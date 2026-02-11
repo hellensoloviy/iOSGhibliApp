@@ -29,6 +29,10 @@ struct Film: Codable, Identifiable, Equatable, Hashable {
     
     let castList: [String]
     
+    var scoreInt: Int {
+        Int(score) ?? -1
+    }
+    
     enum CodingKeys: String, CodingKey {
         case id, title, image, description, director, producer
         
