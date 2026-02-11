@@ -7,6 +7,13 @@
 
 import SwiftUI
 
+#Preview {
+    FilmsScreenView(
+        viewModel: FilmsViewModel(service: MockChibliService()),
+        favoritesViewModel: FavoritesViewModel(storageService: MockFavoriteFilmsStorageService())
+    )
+}
+
 struct FilmsScreenView: View {
     
     let viewModel: FilmsViewModel
@@ -53,9 +60,4 @@ struct FilmsScreenView: View {
     }
 }
 
-#Preview {
-    FilmsScreenView(
-        viewModel: FilmsViewModel(service: MockChibliService()),
-        favoritesViewModel: FavoritesViewModel(storageService: MockFavoriteFilmsStorageService())
-    )
-}
+

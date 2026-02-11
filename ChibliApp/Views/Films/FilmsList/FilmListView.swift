@@ -9,10 +9,10 @@ import SwiftUI
 
 #Preview {
     
-    @Previewable @State var vm = FilmsViewModel(service: MockChibliService())
+    var service = MockChibliService()
     var vm2 = FavoritesViewModel(storageService: MockFavoriteFilmsStorageService())
-
-    let films = vm.models
+    
+    let films = [service.fetchFilm()]
     FilmListView(models: films,
                  favoritesViewModel: vm2)
 }
@@ -28,6 +28,18 @@ struct FilmListView: View {
         List(models) { obj in
             NavigationLink(value: obj) { 
                 FilmRow(model: obj, favoritesViewModel: favoritesViewModel)
+            }
+        }
+        .overlay {
+            if models.isEmpty {
+                ContentUnavailableView {
+                    Label("Nothing to show", systemImage: "moon.dust")
+                } description: {
+                    Text("There is no films to view")
+                } actions: {
+                    /// nothing here for now
+                }
+                .offset(y: -60)
             }
         }
         .navigationDestination(for: Film.self) { obj in
@@ -54,7 +66,7 @@ private struct FilmRow: View {
                 favoritesViewModel.toggleFavorite(filmID: model.id)
             } label: {
                 let isFavorite = favoritesViewModel.isFavorite(filmID: model.id)
-                Image(systemName: isFavorite ? "hear.fill" : "hear")
+                Image(systemName: isFavorite ? "heart.fill" : "heart")
             }
             .accessibilityHint("Is Favorite button")
             
