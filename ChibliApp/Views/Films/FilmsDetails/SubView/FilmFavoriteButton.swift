@@ -8,15 +8,15 @@
 import SwiftUI
 
 struct FilmFavoriteButton: View {
-    
+
     var filmID: String
     let favoritesViewModel: FavoritesViewModel
     let isLarge: Bool
-    
+
     private var isFavorite: Bool {
         favoritesViewModel.isFavorite(filmID: filmID)
     }
-    
+
     var body: some View {
         Button {
             favoritesViewModel.toggleFavorite(filmID: filmID)
