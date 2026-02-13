@@ -6,12 +6,156 @@
 //
 
 import Testing
+import Foundation
+
 @testable import ChibliApp
 
 struct ChibliAppTests {
+    
+    struct MockChibliService: ChibliService {
 
-    @Test func example() async throws {
-        // Write your test here and use APIs like `#expect(...)` to check expected conditions.
+        var mockFilms: [Film]
+        var shouldThrowError: Bool
+        var fetchDelay: Duration
+        
+        init(mockFilms: [Film] = [], shouldThrowError: Bool = false, fetchDelay: Duration = .zero) {
+            self.mockFilms = mockFilms
+            self.shouldThrowError = shouldThrowError
+            self.fetchDelay = fetchDelay
+            
+            if mockFilms.isEmpty {
+                self.mockFilms = try! loadLocalJSON()
+            }
+        }
+
+        func searchFilm(for searchTerm: String) async throws -> [Film] {
+            if shouldThrowError {
+                throw APIError.networkError(NSError(domain: "Test", code: -1))
+            }
+            
+            if fetchDelay > .zero {
+                try? await Task.sleep(for: fetchDelay)
+            }
+            
+            let allFilms = try loadLocalJSON()
+            let searchResults = allFilms.filter {
+                $0.title.localizedCaseInsensitiveContains(searchTerm)
+            }
+            
+            return searchResults
+        }
+        
+        func fetchFilms() async throws -> [Film] {
+            if shouldThrowError {
+                throw APIError.networkError(NSError(domain: "Test", code: -1))
+            }
+            
+            if fetchDelay > .zero {
+                try? await Task.sleep(for: fetchDelay)
+            }
+            
+            let data = try loadLocalJSON()
+            
+            return data
+        }
+        
+        func fetchPersonDetails(from stringURL: String) async throws -> Person {
+            if shouldThrowError {
+                throw APIError.networkError(NSError(domain: "Test", code: -1))
+            }
+            
+            return Person(id: "", name: "", gender: "", age: "", eyeColor: "", hairColor: "", url: "", species: "", films: [])
+        }
+        
+        func loadLocalJSON() throws -> [Film] {
+        guard let url = Bundle.main.url(forResource: "SampleDataFilms", withExtension: "json") else {
+            throw APIError.invalidURL
+        }
+
+        do {
+            let data = try Data(contentsOf: url)
+            let resultData = try JSONDecoder().decode([Film].self, from: data)
+            return resultData
+        } catch let error as DecodingError {
+            print("[MockChibliService] DecodingError \(error)")
+            throw APIError.decodingError(error)
+        } catch {
+            print("[MockChibliService] URLError \(error)")
+            throw APIError.networkError(error)
+        }
+        
+    }
+        
+    }
+
+    
+
+    @MainActor
+    @Test func testInitialState() async throws {
+        let service = MockChibliService()
+        let searchVM = SearchScreenViewModel(service: service)
+        
+        #expect(searchVM.state.data == nil)
+        
+        if case .idle = searchVM.state {
+            
+        } else {
+            Issue.record("Expected idle state")
+        }
+    }
+    
+    @MainActor
+    @Test("Search with query filters results")
+    func testSearchWithQuery() async throws {
+        let service = MockChibliService()
+        let searchVM = SearchScreenViewModel(service: service)
+        
+        await searchVM.fetch(searchTerm: "Totoro")
+        
+        #expect(searchVM.state.data?.count == 1)
+        #expect(searchVM.state.data?.first?.title == "My Neighbor Totoro")
+
+
+    }
+    
+    @MainActor
+    @Test("Search with query filters results - No results")
+    func testSearchWithQuery_noResults() async throws {
+        let service = MockChibliService()
+        let searchVM = SearchScreenViewModel(service: service)
+        
+        await searchVM.fetch(searchTerm: "T9876")
+        
+        #expect(searchVM.state.data?.count == 0)
+    }
+    
+    @MainActor
+    @Test("Search with query filters results - No results")
+    func testSearchWithQuery_errorState() async throws {
+        let service = MockChibliService(shouldThrowError: true)
+        let searchVM = SearchScreenViewModel(service: service)
+        
+        await searchVM.fetch(searchTerm: "T9876")
+        
+        #expect(searchVM.state.error != nil)
+    }
+    
+    @MainActor
+    @Test("Task cancellation after API call prevents state update")
+    func testCancellationAfterAPICall() async throws {
+        let service = MockChibliService(fetchDelay: .microseconds(100))
+        let searchVM = SearchScreenViewModel(service: service)
+        
+        let task = Task {
+            await searchVM.fetch(searchTerm: "Toto")
+        }
+        
+        try? await Task.sleep(for: .milliseconds(50))
+        task.cancel()
+        
+        await task.value
+        
+        #expect(searchVM.state == .idle)
     }
 
 }

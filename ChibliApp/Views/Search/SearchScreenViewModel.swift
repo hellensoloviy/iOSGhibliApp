@@ -21,7 +21,13 @@ class SearchScreenViewModel {
     }
     
     func fetch(searchTerm: String) async {
-//        guard !state.isLoading || state.error != nil else { return }
+        
+        /// wait and check if there was no new task.
+        /// When new task is there - the old one will be cancelled, so we just check for the cancelled state
+        try? await Task.sleep(for: .milliseconds(500))
+        guard !Task.isCancelled else { return }
+        
+        
         guard !searchTerm.isEmpty else { return }
 
         state = .loading
