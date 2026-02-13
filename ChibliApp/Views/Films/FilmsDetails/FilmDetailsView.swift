@@ -57,6 +57,18 @@ struct FilmDetailsView: View {
                                 Text(obj.name)
                             }
                         }
+                        .overlay {
+                            if people.isEmpty {
+                                ContentUnavailableView {
+                                    Label("Nothing to show", systemImage: "moon.dust")
+                                } description: {
+                                    Text("The list of the cast is empty")
+                                } actions: {
+                                    /// nothing here for now
+                                }
+                                .offset(y: -60)
+                            }
+                        }
                         
                     case .loading:
                         ProgressView {
@@ -65,16 +77,6 @@ struct FilmDetailsView: View {
                     case .error(let error):
                         Text("Error! \(error.description)")
                             .foregroundStyle(.pink)
-                        
-                    case .empty:
-                        ContentUnavailableView {
-                            Label("Nothing to show", systemImage: "moon.dust")
-                        } description: {
-                            Text("The details are empty")
-                        } actions: {
-                            /// nothing here for now
-                        }
-                        .offset(y: -60)
                         
                     }
                 }

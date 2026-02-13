@@ -10,16 +10,8 @@ import Observation
 
 @Observable
 class FilmDetailsViewModel {
-    
-    enum State: Equatable {
-        case idle
-        case empty
-        case loading
-        case loaded([Person])
-        case error(String)
-    }
-    
-    var state: State = .idle
+
+    var state: LoadingState<[Person]> = .idle
     
     private let service: ChibliService
     
@@ -28,7 +20,7 @@ class FilmDetailsViewModel {
     }
     
     func fetch(for film: Film) async {
-        guard state != .loading else { return }
+        guard !state.isLoading else { return }
         state = .loading
         
         var loadedCast: [Person] = []
@@ -59,28 +51,27 @@ class FilmDetailsViewModel {
 }
 
 
-//import Playgrounds
-//
-//#Playground {
-//
-//    let service = MockChibliService()
-//    let vm = FilmDetailsView(service: service)
-//
-//    do {
-//        let film = try await service.fetchFilm()
-//        await vm.viewModel.fetch(for: film)
-//        
-//        
-//        switch vm.state {
-//        case .loading: print("loading")
-//        case .idle: print("idle")
-//        case .error(let error): print("Error! \(error.debugDescription)")
-//        case .loaded(let result): print("Loaded! Cast count: \(result.count)")
-//        case .empty: print("empty")
-//        }
-//        
-//    } catch {
-//        print("Playground FilmDetailsVM Error \(error)")
-//    }
-//    
-//}
+import Playgrounds
+
+#Playground {
+
+    let service = MockChibliService()
+    let vm = FilmDetailsViewModel(service: service)
+
+    do {
+        let film = try await service.fetchFilm()
+        await vm.fetch(for: film)
+        
+        
+        switch vm.state {
+        case .loading: print("loading")
+        case .idle: print("idle")
+        case .error(let error): print("Error! \(error.debugDescription)")
+        case .loaded(let result): print("Loaded! Cast count: \(result.count)")
+        }
+        
+    } catch {
+        print("Playground FilmDetailsVM Error \(error)")
+    }
+    
+}

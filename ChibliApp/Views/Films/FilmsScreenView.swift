@@ -29,6 +29,18 @@ struct FilmsScreenView: View {
                     
                 case .loaded(let models):
                     FilmListView(models: models, favoritesViewModel: favoritesViewModel)
+                        .overlay {
+                            if models.isEmpty {
+                                ContentUnavailableView {
+                                    Label("Nothing to show", systemImage: "moon.dust")
+                                } description: {
+                                    Text("The list is empty")
+                                } actions: {
+                                    /// nothing here for now
+                                }
+                                .offset(y: -60)
+                            }
+                        }
                     
                 case .loading:
                     //TODO: - add effect here
@@ -38,17 +50,8 @@ struct FilmsScreenView: View {
                 case .error(let error):
                     Text("Error! \(error.description)")
                         .foregroundStyle(.pink)
-                    
-                case .empty:
-                    ContentUnavailableView {
-                        Label("Nothing to show", systemImage: "moon.dust")
-                    } description: {
-                        Text("The list is empty")
-                    } actions: {
-                        /// nothing here for now
-                    }
-                    .offset(y: -60)
                 }
+
             }
             .navigationTitle("Chibli Movies")
             .navigationBarTitleDisplayMode(.large)

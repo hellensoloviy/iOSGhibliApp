@@ -36,16 +36,21 @@ struct FilmListView: View {
             
         }
         .overlay {
-            if models.isEmpty {
-                ContentUnavailableView {
-                    Label("Nothing to show", systemImage: "moon.dust")
-                } description: {
-                    Text("There is no films to view")
-                } actions: {
-                    /// nothing here for now
-                }
-                .offset(y: -60)
-            }
+            /// as this view is re-usable, let every place has its own overlay
+            
+            /*
+             
+             if searchResults.isEmpty {
+                 ContentUnavailableView {
+                     Label("Nothing to show", systemImage: "moon.dust")
+                 } description: {
+                     Text("Nothing is found")
+                 } actions: {
+                     /// nothing here for now
+                 }
+                 .offset(y: -60)
+             
+             */
         }
         .navigationDestination(for: Film.self) { obj in
             FilmDetailsView(favoritedViewModel: favoritesViewModel, model: obj)

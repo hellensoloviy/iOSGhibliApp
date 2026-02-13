@@ -15,17 +15,20 @@ struct ContentView: View {
     var body: some View {
         TabView {
             Tab("Movies", systemImage: "movieclapper") {
-                FilmsScreenView(viewModel: filmsViewModel, favoritesViewModel: favoritesViewModel)
+                FilmsScreenView(viewModel: filmsViewModel,
+                                favoritesViewModel: favoritesViewModel)
             }
             Tab("Favorites", systemImage: "heart") {
-                FavoritesScreenView(viewModel: filmsViewModel, favoritesViewModel: favoritesViewModel)
+                FavoritesScreenView(viewModel: filmsViewModel,
+                                    favoritesViewModel: favoritesViewModel)
             }
             Tab("Settigs", systemImage: "gear") {
                 SettingsScreenView()
             }
             
             Tab(role: .search) {
-                SearchScreenView()
+                SearchScreenView(viewModel: SearchScreenViewModel(),
+                                 favoritesViewModel: favoritesViewModel)
             }
         }
         .task {

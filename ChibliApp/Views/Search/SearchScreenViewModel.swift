@@ -1,8 +1,8 @@
 //
-//  FilmsViewModel.swift
+//  SearchScreenViewModel.swift
 //  ChibliApp
 //
-//  Created by Olena Solovii on 01.02.2026.
+//  Created by Olena Solovii on 13.02.2026.
 //
 
 import Foundation
@@ -10,8 +10,8 @@ import Observation
 
 
 @Observable
-class FilmsViewModel {
-    
+class SearchScreenViewModel {
+
     var state: LoadingState<[Film]> = .idle
     
     private let service: ChibliService
@@ -20,12 +20,14 @@ class FilmsViewModel {
         self.service = service
     }
     
-    func fetch() async {
-        guard !state.isLoading || state.error != nil else { return }
+    func fetch(searchTerm: String) async {
+//        guard !state.isLoading || state.error != nil else { return }
+        guard !searchTerm.isEmpty else { return }
+
         state = .loading
         
         do {
-            let models = try await service.fetchFilms()
+            let models = try await service.searchFilm(for: searchTerm)
             self.state = .loaded(models)
         } catch let error as APIError {
             self.state = .error(error.customDescription ?? "Unknown APIError appeared. Please refer to [FilmsViewModel.fetch]")
@@ -38,4 +40,3 @@ class FilmsViewModel {
 
     
 }
-
