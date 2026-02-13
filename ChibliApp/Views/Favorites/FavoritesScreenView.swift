@@ -14,27 +14,38 @@ struct FavoritesScreenView: View {
 
     
     var models: [Film] {
-        //TODO: - logic for favorites
-        return []
+        let ids = favoritesViewModel.favoriteIDs
+        
+        switch viewModel.state {
+        case .loaded(let models):
+            let favs = models.filter({ ids.contains($0.id) })
+            return favs
+        default:
+            return []
+        }
     }
     
     var body: some View {
         NavigationStack {
             Group {
-                if viewModel.models.isEmpty {
-                    ContentUnavailableView("No favorites yet", systemImage: "heart")
-                } else {
-                    FilmListView(models: viewModel.models, favoritesViewModel: favoritesViewModel)
-                }
+                FilmListView(models: models, favoritesViewModel: favoritesViewModel)
             }
             .navigationTitle("Favorites")
             .navigationBarTitleDisplayMode(.large)
         }
 
     }
+    
 }
 
 #Preview {
-    FavoritesScreenView(viewModel: FilmsViewModel(service: MockChibliService()),
-                        favoritesViewModel: FavoritesViewModel(storageService: MockFavoriteFilmsStorageService()))
+    @Previewable @State var vm = FilmsViewModel(service: MockChibliService())
+    @Previewable @State var vmFav = FavoritesViewModel(storageService: MockFavoriteFilmsStorageService())
+
+    FavoritesScreenView(viewModel: vm,
+                        favoritesViewModel: vmFav)
+    .task {
+        await vm.fetch()
+        vmFav.load()
+    }
 }
