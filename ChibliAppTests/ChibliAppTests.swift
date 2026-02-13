@@ -12,11 +12,14 @@ import Foundation
 
 struct ChibliAppTests {
     
-    struct MockChibliService: ChibliService {
+    actor MockChibliService: ChibliService {
 
         var mockFilms: [Film]
         var shouldThrowError: Bool
         var fetchDelay: Duration
+        
+        var fetchCallCount = 0
+        var lastSearchQuery: String? = nil
         
         init(mockFilms: [Film] = [], shouldThrowError: Bool = false, fetchDelay: Duration = .zero) {
             self.mockFilms = mockFilms
@@ -29,6 +32,10 @@ struct ChibliAppTests {
         }
 
         func searchFilm(for searchTerm: String) async throws -> [Film] {
+            
+            fetchCallCount += 1
+            lastSearchQuery = searchTerm
+            
             if shouldThrowError {
                 throw APIError.networkError(NSError(domain: "Test", code: -1))
             }
@@ -36,6 +43,8 @@ struct ChibliAppTests {
             if fetchDelay > .zero {
                 try? await Task.sleep(for: fetchDelay)
             }
+            
+            try Task.checkCancellation()
             
             let allFilms = try loadLocalJSON()
             let searchResults = allFilms.filter {
@@ -150,10 +159,16 @@ struct ChibliAppTests {
             await searchVM.fetch(searchTerm: "Toto")
         }
         
-        try? await Task.sleep(for: .milliseconds(50))
+        try? await Task.sleep(for: .milliseconds(550))
         task.cancel()
         
         await task.value
+        
+        let fetchCallCount = await service.fetchCallCount
+        #expect(fetchCallCount == 1)
+        
+        let lastSearchQuery = await service.lastSearchQuery
+        #expect(lastSearchQuery == "Toto")
         
         #expect(searchVM.state == .idle)
     }

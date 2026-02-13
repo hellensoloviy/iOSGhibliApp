@@ -12,6 +12,7 @@ import Foundation
  For Model got from https://ghibliapi.vercel.app/films
  */
 
+nonisolated /// opted out of the main actor. May need to investigate another solution. TBD
 struct Film: Codable, Identifiable, Equatable, Hashable {
     
     let id: String

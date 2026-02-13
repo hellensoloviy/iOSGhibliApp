@@ -14,6 +14,8 @@ class SearchScreenViewModel {
 
     var state: LoadingState<[Film]> = .idle
     
+    private var lastSearchTerm: String? = nil
+    
     private let service: ChibliService
     
     init(service: ChibliService = DefaultChibliService()) {
@@ -21,6 +23,8 @@ class SearchScreenViewModel {
     }
     
     func fetch(searchTerm: String) async {
+        
+        lastSearchTerm = searchTerm
         
         /// wait and check if there was no new task.
         /// When new task is there - the old one will be cancelled, so we just check for the cancelled state
@@ -37,6 +41,12 @@ class SearchScreenViewModel {
             self.state = .loaded(models)
         } catch let error as APIError {
             self.state = .error(error.customDescription ?? "Unknown APIError appeared. Please refer to [FilmsViewModel.fetch]")
+        } catch let error as CancellationError {
+            if lastSearchTerm == searchTerm {
+                self.state = .idle
+            } else {
+                /// nothing neded for now
+            }
         } catch {
             self.state = .error("Unknown error appeared. Please refer to [FilmsViewModel.fetch]")
         }
