@@ -170,6 +170,31 @@ struct ChibliAppTests {
         let lastSearchQuery = await service.lastSearchQuery
         #expect(lastSearchQuery == "Toto")
         
+        #expect(searchVM.state.error != nil)
+    }
+    
+    @MainActor
+    @Test("Test that task is not fetching too frequently")
+    func testDebounceTiming() async throws {
+        let service = MockChibliService(fetchDelay: .microseconds(100))
+        let searchVM = SearchScreenViewModel(service: service)
+        
+        let task = Task {
+            await searchVM.fetch(searchTerm: "Toto")
+        }
+        
+        /// cancel before debounce timing is over
+        try? await Task.sleep(for: .milliseconds(350))
+        task.cancel()
+        
+        await task.value
+        
+        let fetchCallCount = await service.fetchCallCount
+        #expect(fetchCallCount == 0)
+        
+        let lastSearchQuery = await service.lastSearchQuery
+        #expect(lastSearchQuery == nil)
+        
         #expect(searchVM.state == .idle)
     }
 
