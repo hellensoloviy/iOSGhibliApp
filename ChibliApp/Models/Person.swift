@@ -38,16 +38,16 @@ struct Person: Codable, Identifiable, Equatable, Hashable {
     
 }
 
-//import Playgrounds
-//
-//#Playground {
-//    let url = URL(string: "https://ghibliapi.vercel.app/people/fe93adf2-2f3a-4ec4-9f68-5422f1b87c01")!
-//
-//
-//    do {
-//        let (data, response) =  try await URLSession.shared.data(from: url)
-//        try JSONDecoder().decode(Person.self, from: data)
-//    } catch {
-//        print("Playground Film Error \(error)")
-//    }
-//}
+import Playgrounds
+
+#Playground {
+    let url = URL(string: "https://ghibliapi.vercel.app/people/fe93adf2-2f3a-4ec4-9f68-5422f1b87c01")!
+
+
+    do {
+        let (data, response) =  try await URLSession.shared.data(from: url)
+        try JSONDecoder().decode(Person.self, from: data)
+    } catch {
+        print("Playground Film Error \(error)")
+    }
+}

@@ -46,16 +46,16 @@ struct Film: Codable, Identifiable, Equatable, Hashable {
 }
 
 
-//import Playgrounds
-// 
-//#Playground {
-//    let url = URL(string: "https://ghibliapi.vercel.app/films")!
-//    
-//    
-//    do {
-//        let (data, response) =  try await URLSession.shared.data(from: url)
-//        try JSONDecoder().decode([Film].self, from: data)
-//    } catch {
-//        print("Playground Film Error \(error)")
-//    }
-//}
+import Playgrounds
+ 
+#Playground {
+    let url = URL(string: "https://ghibliapi.vercel.app/films")!
+    
+    
+    do {
+        let (data, response) =  try await URLSession.shared.data(from: url)
+        try JSONDecoder().decode([Film].self, from: data)
+    } catch {
+        print("Playground Film Error \(error)")
+    }
+}
