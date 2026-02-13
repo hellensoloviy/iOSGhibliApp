@@ -17,6 +17,7 @@ struct Film: Codable, Identifiable, Equatable, Hashable {
     
     let id: String
     let title: String
+    let originalTitle: String
     let description: String
     let director: String
     let producer: String
@@ -42,6 +43,7 @@ struct Film: Codable, Identifiable, Equatable, Hashable {
         case duration = "running_time"
         case score = "rt_score"
         case castList = "people"
+        case originalTitle = "original_title"
     }
      
 }

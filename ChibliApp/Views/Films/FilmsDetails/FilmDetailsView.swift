@@ -34,6 +34,37 @@ struct FilmDetailsView: View {
                     .frame(height: 300)
                     .containerRelativeFrame(.horizontal)
                 
+                VStack(alignment: .leading) {
+                    HStack {
+                        Text(model.title)
+                            .font(.title2)
+                    }
+                    
+                    Divider()
+                    Spacer()
+                    
+                    HStack {
+                        Text("Released on ")
+                            .foregroundStyle(.gray.opacity(0.99))
+                        + Text(model.releaseYear)
+                    }
+                    
+                    HStack {
+                        Text("Directed by ")
+                            .foregroundStyle(.gray.opacity(0.99))
+                        + Text(model.director)
+                    }
+                    
+                    HStack {
+                        Text("Producer: ")
+                            .foregroundStyle(.gray.opacity(0.99))
+                        + Text(model.producer)
+                    }
+                }
+                .padding()
+                
+
+                
                 //            VStack {
                 //
                 //            }
@@ -52,6 +83,7 @@ struct FilmDetailsView: View {
                         EmptyView()
                         
                     case .loaded(let people):
+                        //TODO: - People details view
                         ForEach(people) { obj in
                             NavigationLink(value: obj) {
                                 Text(obj.name)

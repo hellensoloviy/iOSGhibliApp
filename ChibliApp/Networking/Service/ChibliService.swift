@@ -70,11 +70,6 @@ struct DefaultChibliService: ChibliService {
 
 //MARK: - MOCK
 struct MockChibliService: ChibliService {
-    
-    private struct SampleData: Decodable {
-        let films: [Film]
-        let people: [Person]
-    }
 
     func searchFilm(for searchTerm: String) async throws -> [Film] {
         let allFilms = try loadLocalJSON()
