@@ -198,4 +198,76 @@ struct ChibliAppTests {
         #expect(searchVM.state == .idle)
     }
 
+    @MainActor
+    @Test("Test multiple rapid searches, need to execute only the last one")
+    func testDebounceWithMultipleSearches() async throws {
+        let service = MockChibliService()
+        let searchVM = SearchScreenViewModel(service: service)
+        
+        
+        //simulate searches
+        let searches = ["T", "To", "Todo", "To", "Toto", "Totor", "Totoro"]
+        var tasks: [Task<Void, Never>] = []
+        
+        for search in searches {
+            tasks.last?.cancel()
+            
+            let task = Task {
+                await searchVM.fetch(searchTerm: search)
+            }
+            
+            tasks.append(task)
+            
+            /// add delay between searches. Should be shorted than 500 debaunce time
+            try? await Task.sleep(for: .milliseconds(50))
+        }
+        
+        await tasks.last?.value
+        
+        let fetchCallCount = await service.fetchCallCount
+        #expect(fetchCallCount == 1, "Only the last one should be executed")
+        
+        let lastSearchQuery = await service.lastSearchQuery
+        #expect(lastSearchQuery == "Totoro", "The last one should be here")
+        
+        #expect(searchVM.state.data?.count == 1)
+        #expect(searchVM.state.data?.first?.title == "My Neighbor Totoro")
+    }
+
+    @MainActor
+    @Test("Test multiple slow searches, need to execute all")
+    func testDebounceWithMultipleSlowSearches() async throws {
+        let service = MockChibliService()
+        let searchVM = SearchScreenViewModel(service: service)
+        
+        
+        //simulate searches
+        let searches = ["T", "Toto", "Totoro"]
+        var tasks: [Task<Void, Never>] = []
+        
+        for search in searches {
+            tasks.last?.cancel()
+            
+            let task = Task {
+                await searchVM.fetch(searchTerm: search)
+            }
+            
+            tasks.append(task)
+            
+            /// add delay between searches. Should be shorted than 500 debaunce time
+            try? await Task.sleep(for: .milliseconds(550))
+        }
+        
+        await tasks.last?.value
+        
+        let fetchCallCount = await service.fetchCallCount
+        #expect(fetchCallCount == 3, "All searches should be executed")
+        
+        let lastSearchQuery = await service.lastSearchQuery
+        #expect(lastSearchQuery == "Totoro", "The last one should be here")
+        
+        #expect(searchVM.state.data?.count == 1)
+        #expect(searchVM.state.data?.first?.title == "My Neighbor Totoro")
+    }
+    
 }
