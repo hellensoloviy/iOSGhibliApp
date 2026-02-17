@@ -26,15 +26,18 @@ class SearchScreenViewModel {
         
         currentSearchTerm = searchTerm
         
+        guard !searchTerm.isEmpty else {
+            state = .idle
+            return
+        }
+
+        state = .loading
+        
         /// wait and check if there was no new task.
         /// When new task is there - the old one will be cancelled, so we just check for the cancelled state
         try? await Task.sleep(for: .milliseconds(500))
         guard !Task.isCancelled else { return }
         
-        
-        guard !searchTerm.isEmpty else { return }
-
-        state = .loading
         
         do {
             let models = try await service.searchFilm(for: searchTerm)

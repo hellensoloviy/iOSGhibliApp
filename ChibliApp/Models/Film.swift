@@ -24,7 +24,7 @@ struct Film: Codable, Identifiable, Equatable, Hashable {
 
     let releaseYear: String
     let score: String
-    let duration: String //TODO: - type?
+    let duration: String
     
     let image: String
     let bannerImage: String

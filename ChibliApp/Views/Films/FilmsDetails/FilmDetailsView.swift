@@ -34,42 +34,65 @@ struct FilmDetailsView: View {
                     .frame(height: 300)
                     .containerRelativeFrame(.horizontal)
                 
-                VStack(alignment: .leading) {
-                    HStack {
-                        Text(model.title)
-                            .font(.title2)
+                HStack {
+                    VStack(alignment: .leading) {
+                        HStack {
+                            Text(model.title)
+                                .font(.title2)
+                        }
+                        
+                        Divider()
+                        Spacer()
+                        
+                        HStack {
+                            Text("Released on ")
+                                .foregroundStyle(.gray.opacity(0.99))
+                            + Text(model.releaseYear)
+                        }
+                        
+                        HStack {
+                            Text("Directed by ")
+                                .foregroundStyle(.gray.opacity(0.99))
+                            + Text(model.director)
+                        }
+                        
+                        HStack {
+                            Text("Producer: ")
+                                .foregroundStyle(.gray.opacity(0.99))
+                            + Text(model.producer)
+                        }
+                        
+                        HStack {
+                            Text("Duration: ")
+                                .foregroundStyle(.gray.opacity(0.99))
+                            + Text(model.duration)
+                            + Text(" min")
+                        }
                     }
                     
-                    Divider()
-                    Spacer()
-                    
-                    HStack {
-                        Text("Released on ")
-                            .foregroundStyle(.gray.opacity(0.99))
-                        + Text(model.releaseYear)
+                    VStack {
+                        //TODO: - centering
+                        Spacer()
+                        Text("Score: ")
+
+                        Text(model.score)
+                            .font(.largeTitle)
+                            .foregroundStyle(model.scoreInt > 50 ? .green : .orange)
+                        +
+                        Text(" / 100")
+
                     }
                     
-                    HStack {
-                        Text("Directed by ")
-                            .foregroundStyle(.gray.opacity(0.99))
-                        + Text(model.director)
-                    }
-                    
-                    HStack {
-                        Text("Producer: ")
-                            .foregroundStyle(.gray.opacity(0.99))
-                        + Text(model.producer)
-                    }
                 }
                 .padding()
+
                 
 
                 
                 //            VStack {
                 //
                 //            }
-                //            .navigationTitle(model.title)
-                //            .navigationBarTitleDisplayMode(.large)
+
                 
                 VStack(alignment: .leading) {
                     
@@ -115,6 +138,8 @@ struct FilmDetailsView: View {
                 .padding()
                 
             }
+            .navigationTitle(model.title)
+            .navigationBarTitleDisplayMode(.inline)
             .toolbar {
                 FilmFavoriteButton(filmID: model.id, favoritesViewModel: favoritedViewModel, isLarge: false)
             }
@@ -125,6 +150,7 @@ struct FilmDetailsView: View {
             .task(id: model) {
                 await viewModel.fetch(for: model)
             }
+
 
         }
         
