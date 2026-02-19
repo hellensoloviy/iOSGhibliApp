@@ -10,6 +10,7 @@ import Foundation
 protocol FavoriteFilmsStorageProtocol {
     func save(_ object: Set<String>)
     func load() -> Set<String>
+    func clearAll()
 }
 
 struct FavoriteFilmsStorageService: FavoriteFilmsStorageProtocol {
@@ -24,11 +25,18 @@ struct FavoriteFilmsStorageService: FavoriteFilmsStorageProtocol {
         return favoriteIDs
     }
     
+    func clearAll() {
+        StorageService().remove(for: .favoriteFilms)
+    }
+    
 }
 
 //MARK: - Mock
 
 struct MockFavoriteFilmsStorageService: FavoriteFilmsStorageProtocol {
+    func clearAll() {
+        /* nothing needed */
+    }
     
     func save(_ object: Set<String>) { /* nothing neeeded */}
     

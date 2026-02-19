@@ -24,6 +24,10 @@ struct StorageService {
         return array
     }
     
+    func remove( for key: StorageService.CustomKeys) {
+        UserDefaults.standard.removeObject(forKey: key.rawValue)
+
+    }
     
     func resetAll() {
         //TODO: -

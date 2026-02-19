@@ -86,14 +86,6 @@ struct FilmDetailsView: View {
                 }
                 .padding()
 
-                
-
-                
-                //            VStack {
-                //
-                //            }
-
-                
                 VStack(alignment: .leading) {
                     
                     Text("Characters/Cast")

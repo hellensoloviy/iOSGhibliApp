@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		40701A102F3E0FF9004AFD8F /* FilmFavoriteButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40701A0F2F3E0FF9004AFD8F /* FilmFavoriteButton.swift */; };
+		40AFAEA92F4D7291005D4405 /* SettingsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40AFAEA82F4D7291005D4405 /* SettingsViewModel.swift */; };
 		40CC6FA92F308F8400C0938D /* FilmListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40CC6FA82F308F8400C0938D /* FilmListView.swift */; };
 		40CC6FAC2F3099B000C0938D /* FilmsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40CC6FAB2F3099B000C0938D /* FilmsViewModel.swift */; };
 		40CC6FBA2F30A69400C0938D /* Errors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40CC6FB92F30A69400C0938D /* Errors.swift */; };
@@ -57,6 +58,7 @@
 
 /* Begin PBXFileReference section */
 		40701A0F2F3E0FF9004AFD8F /* FilmFavoriteButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilmFavoriteButton.swift; sourceTree = "<group>"; };
+		40AFAEA82F4D7291005D4405 /* SettingsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewModel.swift; sourceTree = "<group>"; };
 		40CC6FA82F308F8400C0938D /* FilmListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilmListView.swift; sourceTree = "<group>"; };
 		40CC6FAB2F3099B000C0938D /* FilmsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilmsViewModel.swift; sourceTree = "<group>"; };
 		40CC6FB92F30A69400C0938D /* Errors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Errors.swift; sourceTree = "<group>"; };
@@ -195,6 +197,7 @@
 		40CE51992F333AFC004AB32D /* Settings */ = {
 			isa = PBXGroup;
 			children = (
+				40AFAEA82F4D7291005D4405 /* SettingsViewModel.swift */,
 				40CE519A2F333B03004AB32D /* SettingsScreenView.swift */,
 			);
 			path = Settings;
@@ -203,8 +206,8 @@
 		40CE519C2F333B84004AB32D /* Favorites */ = {
 			isa = PBXGroup;
 			children = (
-				40CE519D2F333B8D004AB32D /* FavoritesScreenView.swift */,
 				40CE51A52F33534F004AB32D /* FavoritesViewModel.swift */,
+				40CE519D2F333B8D004AB32D /* FavoritesScreenView.swift */,
 			);
 			path = Favorites;
 			sourceTree = "<group>";
@@ -468,6 +471,7 @@
 				40CEC0D42F2F624100344280 /* Person.swift in Sources */,
 				40CEC0CB2F2F54A100344280 /* ChibliAppApp.swift in Sources */,
 				40CEC0D22F2F623600344280 /* Film.swift in Sources */,
+				40AFAEA92F4D7291005D4405 /* SettingsViewModel.swift in Sources */,
 				40CE51982F333732004AB32D /* URL+ImageAssets.swift in Sources */,
 				40CC6FC62F30D3E900C0938D /* Film_1.json in Sources */,
 				40F9DA522F3F0E1C00DBD566 /* LoadingState.swift in Sources */,
