@@ -18,22 +18,15 @@ class SettingsViewModel {
     private let storageService: FavoriteFilmsStorageProtocol
     private let settingsService: SettingsStorageServiceProtocol
     
-    private var isLightThemeOn: Bool
     
     init(storageService: FavoriteFilmsStorageProtocol, settingsService: SettingsStorageServiceProtocol) {
         self.storageService = storageService
         self.settingsService = settingsService
         
-        self.isLightThemeOn = settingsService.getIsLightThemeOn()
     }
     
 //MARK: -
-            
-    func toggleIsLightThemeOn() {
-        isLightThemeOn = !isLightThemeOn
-        settingsService.saveUseLightTheme(newValue: isLightThemeOn)
-    }
-    
+
     func updateLanguage(to language: String) {
         settingsService.saveLanguageChoice(language)
     }

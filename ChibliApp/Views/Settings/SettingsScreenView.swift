@@ -10,7 +10,7 @@ import UserNotifications
 import Combine
 
 #Preview {
-    let settings = MockSettingsStorageService(isLightThemeOn: false, languageIndex: 0)
+    let settings = MockSettingsStorageService(languageIndex: 0)
     
     SettingsScreenView(
         viewModel: SettingsViewModel(storageService: MockFavoriteFilmsStorageService(),
@@ -23,7 +23,6 @@ struct SettingsScreenView: View {
 
     @StateObject var notificationService = NotificationService()
     
-    @State private var isLightThemeOn: Bool = false
     @State private var shouldShowFavoritesUIOnTheMainList: Bool = false
     
     @State private var languageIndex = 0
@@ -35,15 +34,8 @@ struct SettingsScreenView: View {
         NavigationView {
             Form {
                 Section("Appearence") {
-                    lightModeToggleView
+                    appearenceThemePickerView
                     showFavoritesToggleView
-                    
-                    Picker("Appearance", selection: $appTheme) {
-                        ForEach(AppTheme.allCases, id: \.self) { theme in
-                            Text(theme.rawValue.capitalized).tag(theme)
-                        }
-                    }
-                    .pickerStyle(SegmentedPickerStyle())
                 }
                 
                 Section("Preferences") {
@@ -91,14 +83,13 @@ struct SettingsScreenView: View {
     
 //MARK: - Private UI
     
-    private var lightModeToggleView: some View {
-        HStack {
-            Text("Light mode only")
-            Spacer()
-            Toggle(isOn: $isLightThemeOn) {
-                /// action here
+    private var appearenceThemePickerView: some View {
+        Picker("Appearance", selection: $appTheme) {
+            ForEach(AppTheme.allCases, id: \.self) { theme in
+                Text(theme.rawValue.capitalized).tag(theme)
             }
         }
+        .pickerStyle(SegmentedPickerStyle())
     }
     
     private var showFavoritesToggleView: some View {

@@ -11,7 +11,6 @@ struct StorageService {
     
     enum CustomKeys: String  {
         case favoriteFilms = "ChibliApp.hellensoloviy.test.app.favorite.films"
-        case useLightTheme = "ChibliApp.hellensoloviy.test.app.use.light.theme.only"
         case language = "ChibliApp.hellensoloviy.test.app.use.use.selected.language"
 
     }
