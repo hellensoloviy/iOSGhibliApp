@@ -23,69 +23,29 @@ struct SettingsScreenView: View {
     @State private var shouldShowFavoritesUIOnTheMainList: Bool = false
     
     @State private var languageIndex = 0
-    var languageOptions = ["English", "Arabic", "Chinese", "Danish"]
+    /// test options here
+    var languageOptions = ["English", "Ukrainian", "Arabic", "Chinese", "Danish"]
     
     let viewModel: SettingsViewModel
     
     var body: some View {
         NavigationView {
             Form {
-                Group {
-                    Section("Appearence") {
-                        HStack {
-                            Text("Light mode only")
-                            Spacer()
-                            Toggle(isOn: $isLightThemeOn) {
-                                /// action here
-                            }
-                        }
-                        
-                        HStack {
-                            Text("Show favorites UI in the main list")
-                            Spacer()
-                            Toggle(isOn: $shouldShowFavoritesUIOnTheMainList) {
-                                /// action here
-                            }
-                        }
-                        
-                    }
+                Section("Appearence") {
+                    lightModeToggleView
+                    showFavoritesToggleView
                 }
                 
-                Group {
-                    Section("Preferences") {
-                        HStack {
-                            Toggle("Enable notifications", isOn: $notificationService.isAuthorized)
-                                .onChange(of: notificationService.isAuthorized) { _, newValue in
-                                    if newValue {
-                                        Task {
-                                            await notificationService.requestPermission()
-                                        }
-                                    } else {
-                                        notificationService.showSettingsPage = true
-                                    }
-                                }
-
-                        }
-                        
-                        Picker(selection: $languageIndex,
-                               label: Text("Language")) {
-                            ForEach(0 ..< languageOptions.count) {
-                                Text(self.languageOptions[$0])
-                            }
+                Section("Preferences") {
+                    enableNotificationToggle
+                    
+                    Picker(selection: $languageIndex,
+                           label: Text("Language")) {
+                        ForEach(0..<languageOptions.count) {
+                            Text(self.languageOptions[$0])
                         }
                     }
-                    .fullScreenCover(isPresented: $notificationService.showSettingsPage, content: {
-                        // your settings page here
-                        VStack {
-                            Text("Settings Page").font(.title)
-                            Text("All your settings here").font(.subheadline)
-                            Button("Dismiss") {
-                                notificationService.showSettingsPage = false
-                            }
-                            .padding()
-                            .buttonStyle(.borderedProminent)
-                        }
-                    })
+                    
                 }
                 
                 Button {
@@ -111,72 +71,53 @@ struct SettingsScreenView: View {
             notificationService.refreshAuthorizationStatus()
         }
         
-
-    }
-}
-
-final class NotificationService: NSObject, ObservableObject, UNUserNotificationCenterDelegate {
-    
-    @Published var showSettingsPage = false
-    @Published var badgeNumber = 0
-    @Published var isAuthorized = false
-
-    
-    var cancellables = Set<AnyCancellable>()
-    
-    override init() {
-        super.init()
-        UNUserNotificationCenter.current().delegate = self
-        
-        $badgeNumber
-            .drop(while: {$0 < 1})
-            .sink { badgeNumber in
-            UIApplication.shared.applicationIconBadgeNumber = badgeNumber
-        }.store(in: &cancellables)
     }
     
-    func requestPushNotificationAuthorization() async {
-        do {
-            let granted = try await UNUserNotificationCenter.current()
-                .requestAuthorization(options: [
-                    .alert,
-                    .sound,
-                    .badge])
-
-            await MainActor.run {
-                if !granted {
-                    self.showSettingsPage = true
-                }
-                
-                self.isAuthorized = granted
-            }
-            
-            refreshAuthorizationStatus()
-
-        } catch {
-            print(error)
-        }
-    }
+//MARK: - Private UI
     
-    func refreshAuthorizationStatus() {
-        UNUserNotificationCenter.current().getNotificationSettings { [weak self] settings in
-            guard let self else { return }
-
-            Task {
-                await MainActor.run {
-                    self.isAuthorized =
-                        settings.authorizationStatus == .authorized ||
-                        settings.authorizationStatus == .provisional
-                }
+    private var lightModeToggleView: some View {
+        HStack {
+            Text("Light mode only")
+            Spacer()
+            Toggle(isOn: $isLightThemeOn) {
+                /// action here
             }
         }
     }
+    
+    private var showFavoritesToggleView: some View {
+        HStack {
+            Text("Show favorites UI in the main list")
+            Spacer()
+            Toggle(isOn: $shouldShowFavoritesUIOnTheMainList) {
+                /// action here
+            }
+        }
+    }
+    
+    private var enableNotificationToggle: some View {
+        HStack {
+            Toggle("Enable notifications", isOn: $notificationService.isAuthorized)
+                .onChange(of: notificationService.isAuthorized) { _, newValue in
+                    if newValue {
+                        Task {
+                            await notificationService.requestPushNotificationAuthorization()
+                        }
+                    } else {
+                        notificationService.showSettingsPage = true
+                    }
+                }
+
+        }
+    }
+
+//MARK: - Private Logic
 
     
-    func userNotificationCenter(_ center: UNUserNotificationCenter, openSettingsFor notification: UNNotification?) {
-        showSettingsPage = true
-    }
 }
+
+
+
 
 
 
