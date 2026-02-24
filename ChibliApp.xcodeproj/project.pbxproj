@@ -59,6 +59,7 @@
 /* Begin PBXFileReference section */
 		40701A0F2F3E0FF9004AFD8F /* FilmFavoriteButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilmFavoriteButton.swift; sourceTree = "<group>"; };
 		40AFAEA82F4D7291005D4405 /* SettingsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewModel.swift; sourceTree = "<group>"; };
+		40AFAEAA2F4D8566005D4405 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		40CC6FA82F308F8400C0938D /* FilmListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilmListView.swift; sourceTree = "<group>"; };
 		40CC6FAB2F3099B000C0938D /* FilmsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilmsViewModel.swift; sourceTree = "<group>"; };
 		40CC6FB92F30A69400C0938D /* Errors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Errors.swift; sourceTree = "<group>"; };
@@ -277,6 +278,7 @@
 		40CEC0C82F2F54A100344280 /* ChibliApp */ = {
 			isa = PBXGroup;
 			children = (
+				40AFAEAA2F4D8566005D4405 /* Info.plist */,
 				40CE51A72F33554B004AB32D /* Storage */,
 				40CEC0C62F2F54A100344280 /* ChibliAppApp.swift */,
 				40CEC0C72F2F54A100344280 /* ContentView.swift */,
@@ -649,6 +651,7 @@
 				DEVELOPMENT_TEAM = JHWXUS7SF5;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = ChibliApp/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -686,6 +689,7 @@
 				DEVELOPMENT_TEAM = JHWXUS7SF5;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = ChibliApp/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;

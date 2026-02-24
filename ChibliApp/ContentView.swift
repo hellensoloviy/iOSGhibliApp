@@ -23,7 +23,8 @@ struct ContentView: View {
                                     favoritesViewModel: favoritesViewModel)
             }
             Tab("Settigs", systemImage: "gear") {
-                SettingsScreenView()
+                let vm = SettingsViewModel(storageService: FavoriteFilmsStorageService())
+                SettingsScreenView(viewModel: vm)
             }
             
             Tab(role: .search) {
