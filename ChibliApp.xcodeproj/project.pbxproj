@@ -10,6 +10,10 @@
 		40701A102F3E0FF9004AFD8F /* FilmFavoriteButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40701A0F2F3E0FF9004AFD8F /* FilmFavoriteButton.swift */; };
 		40AFAEA92F4D7291005D4405 /* SettingsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40AFAEA82F4D7291005D4405 /* SettingsViewModel.swift */; };
 		40AFAEAC2F4D91F6005D4405 /* NotificationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40AFAEAB2F4D91F6005D4405 /* NotificationService.swift */; };
+		40AFAEB02F4D9A3C005D4405 /* NotificationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40AFAEAB2F4D91F6005D4405 /* NotificationService.swift */; };
+		40AFAEB22F4D9A79005D4405 /* SettingsStorageService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40AFAEB12F4D9A79005D4405 /* SettingsStorageService.swift */; };
+		40AFAEB52F4DA1B5005D4405 /* Array+Safe.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40AFAEB42F4DA1B5005D4405 /* Array+Safe.swift */; };
+		40AFAEB92F4DA6AC005D4405 /* AppTheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40AFAEB82F4DA6AC005D4405 /* AppTheme.swift */; };
 		40CC6FA92F308F8400C0938D /* FilmListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40CC6FA82F308F8400C0938D /* FilmListView.swift */; };
 		40CC6FAC2F3099B000C0938D /* FilmsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40CC6FAB2F3099B000C0938D /* FilmsViewModel.swift */; };
 		40CC6FBA2F30A69400C0938D /* Errors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40CC6FB92F30A69400C0938D /* Errors.swift */; };
@@ -62,6 +66,9 @@
 		40AFAEA82F4D7291005D4405 /* SettingsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewModel.swift; sourceTree = "<group>"; };
 		40AFAEAA2F4D8566005D4405 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		40AFAEAB2F4D91F6005D4405 /* NotificationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationService.swift; sourceTree = "<group>"; };
+		40AFAEB12F4D9A79005D4405 /* SettingsStorageService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsStorageService.swift; sourceTree = "<group>"; };
+		40AFAEB42F4DA1B5005D4405 /* Array+Safe.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Array+Safe.swift"; sourceTree = "<group>"; };
+		40AFAEB82F4DA6AC005D4405 /* AppTheme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppTheme.swift; sourceTree = "<group>"; };
 		40CC6FA82F308F8400C0938D /* FilmListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilmListView.swift; sourceTree = "<group>"; };
 		40CC6FAB2F3099B000C0938D /* FilmsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilmsViewModel.swift; sourceTree = "<group>"; };
 		40CC6FB92F30A69400C0938D /* Errors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Errors.swift; sourceTree = "<group>"; };
@@ -136,6 +143,8 @@
 		40AFAEAD2F4D920A005D4405 /* DataLayer */ = {
 			isa = PBXGroup;
 			children = (
+				40AFAEB72F4DA699005D4405 /* Appearence */,
+				40AFAEB32F4DA195005D4405 /* Extensions */,
 				40AFAEAE2F4D92D9005D4405 /* Permissions */,
 				40CEC0D02F2F621F00344280 /* Models */,
 				40CE51A72F33554B004AB32D /* Storage */,
@@ -149,6 +158,22 @@
 				40AFAEAB2F4D91F6005D4405 /* NotificationService.swift */,
 			);
 			path = Permissions;
+			sourceTree = "<group>";
+		};
+		40AFAEB32F4DA195005D4405 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				40AFAEB42F4DA1B5005D4405 /* Array+Safe.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		40AFAEB72F4DA699005D4405 /* Appearence */ = {
+			isa = PBXGroup;
+			children = (
+				40AFAEB82F4DA6AC005D4405 /* AppTheme.swift */,
+			);
+			path = Appearence;
 			sourceTree = "<group>";
 		};
 		40CC6FA72F308F3500C0938D /* Views */ = {
@@ -257,6 +282,7 @@
 			isa = PBXGroup;
 			children = (
 				40CE51A82F33555A004AB32D /* StorageService.swift */,
+				40AFAEB12F4D9A79005D4405 /* SettingsStorageService.swift */,
 				40CE51AA2F3357EF004AB32D /* FavoriteFilmsStorageService.swift */,
 			);
 			path = Storage;
@@ -484,7 +510,9 @@
 			files = (
 				40CE519B2F333B03004AB32D /* SettingsScreenView.swift in Sources */,
 				40CC6FA92F308F8400C0938D /* FilmListView.swift in Sources */,
+				40AFAEB02F4D9A3C005D4405 /* NotificationService.swift in Sources */,
 				40CE519E2F333B8D004AB32D /* FavoritesScreenView.swift in Sources */,
+				40AFAEB92F4DA6AC005D4405 /* AppTheme.swift in Sources */,
 				40701A102F3E0FF9004AFD8F /* FilmFavoriteButton.swift in Sources */,
 				40CC6FC42F30CC3300C0938D /* FilmDetailsView.swift in Sources */,
 				40CE51A02F333C11004AB32D /* SearchScreenView.swift in Sources */,
@@ -493,6 +521,7 @@
 				40CEC0CB2F2F54A100344280 /* ChibliAppApp.swift in Sources */,
 				40CEC0D22F2F623600344280 /* Film.swift in Sources */,
 				40AFAEA92F4D7291005D4405 /* SettingsViewModel.swift in Sources */,
+				40AFAEB22F4D9A79005D4405 /* SettingsStorageService.swift in Sources */,
 				40CE51982F333732004AB32D /* URL+ImageAssets.swift in Sources */,
 				40CC6FC62F30D3E900C0938D /* Film_1.json in Sources */,
 				40F9DA522F3F0E1C00DBD566 /* LoadingState.swift in Sources */,
@@ -504,6 +533,7 @@
 				40CE51AB2F3357EF004AB32D /* FavoriteFilmsStorageService.swift in Sources */,
 				40CE51A32F333CEB004AB32D /* FilmsScreenView.swift in Sources */,
 				40CC6FC22F30CABA00C0938D /* FilmDetailsViewModel.swift in Sources */,
+				40AFAEB52F4DA1B5005D4405 /* Array+Safe.swift in Sources */,
 				40CC6FAC2F3099B000C0938D /* FilmsViewModel.swift in Sources */,
 				40CEC0CC2F2F54A100344280 /* ContentView.swift in Sources */,
 				40CE51A62F33534F004AB32D /* FavoritesViewModel.swift in Sources */,

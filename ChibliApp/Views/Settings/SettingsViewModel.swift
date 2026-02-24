@@ -11,21 +11,57 @@ import Observation
 @Observable
 class SettingsViewModel {
     
-    private let storageService: FavoriteFilmsStorageProtocol
+    var languageOptions = ["English", "Ukrainian", "Arabic", "Chinese", "Danish"]
     
-    init(storageService: FavoriteFilmsStorageProtocol) {
+    //MARK: -
+    
+    private let storageService: FavoriteFilmsStorageProtocol
+    private let settingsService: SettingsStorageServiceProtocol
+    
+    private var isLightThemeOn: Bool
+    
+    init(storageService: FavoriteFilmsStorageProtocol, settingsService: SettingsStorageServiceProtocol) {
         self.storageService = storageService
+        self.settingsService = settingsService
+        
+        self.isLightThemeOn = settingsService.getIsLightThemeOn()
     }
     
 //MARK: -
+            
+    func toggleIsLightThemeOn() {
+        isLightThemeOn = !isLightThemeOn
+        settingsService.saveUseLightTheme(newValue: isLightThemeOn)
+    }
+    
+    func updateLanguage(to language: String) {
+        settingsService.saveLanguageChoice(language)
+    }
+    
+    func restoreLanguageChoiceIndex() -> Int {
+        guard let languageString = settingsService.getLanguageChoice() else {
+            return 0
+        }
+        
+        if let index = languageOptions.firstIndex(of: languageString) {
+            return index
+        } else {
+            print("🔴 Error: Language not found, the first one will be selected")
+            return 0
+        }
+        
+    }
+        
+//MARK: - Storing
+
 
     
 //MARK: - Clear data
     
     func resetToDefaults() {
         clearFavorites()
-
-        /// here goes a list of other actions needed to be reset
+        
+        settingsService.clearAll()
     }
     
     private func clearFavorites() {

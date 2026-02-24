@@ -10,8 +10,11 @@ import UserNotifications
 import Combine
 
 #Preview {
-    SettingsScreenView(viewModel:
-                        SettingsViewModel(storageService: MockFavoriteFilmsStorageService())
+    let settings = MockSettingsStorageService(isLightThemeOn: false, languageIndex: 0)
+    
+    SettingsScreenView(
+        viewModel: SettingsViewModel(storageService: MockFavoriteFilmsStorageService(),
+                                    settingsService: settings)
     )
 }
 
@@ -24,7 +27,6 @@ struct SettingsScreenView: View {
     
     @State private var languageIndex = 0
     /// test options here
-    var languageOptions = ["English", "Ukrainian", "Arabic", "Chinese", "Danish"]
     
     let viewModel: SettingsViewModel
     
@@ -41,15 +43,20 @@ struct SettingsScreenView: View {
                     
                     Picker(selection: $languageIndex,
                            label: Text("Language")) {
-                        ForEach(0..<languageOptions.count) {
-                            Text(self.languageOptions[$0])
+                        let count = viewModel.languageOptions.count
+                        ForEach(0..<count, id: \.self) { index in
+                            Text(viewModel.languageOptions[index])
                         }
                     }
+                   .onChange(of: languageIndex) { _, newValue in
+                       print("Selected language: \(viewModel.languageOptions[newValue])")
+                       viewModel.updateLanguage(to: viewModel.languageOptions[newValue])
+                   }
                     
                 }
                 
                 Button {
-                    /// action here 
+                    viewModel.resetToDefaults()
                 } label: {
                     Text("Reset to defaults")
                         .foregroundStyle(.red)
@@ -62,6 +69,7 @@ struct SettingsScreenView: View {
         }
         .onAppear {
             notificationService.refreshAuthorizationStatus()
+            languageIndex = viewModel.restoreLanguageChoiceIndex()
         }
         .onReceive(
             NotificationCenter.default.publisher(

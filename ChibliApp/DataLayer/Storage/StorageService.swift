@@ -11,12 +11,30 @@ struct StorageService {
     
     enum CustomKeys: String  {
         case favoriteFilms = "ChibliApp.hellensoloviy.test.app.favorite.films"
+        case useLightTheme = "ChibliApp.hellensoloviy.test.app.use.light.theme.only"
+        case language = "ChibliApp.hellensoloviy.test.app.use.use.selected.language"
+
     }
     
 //MARK: -
     func save(_ object: Any, for key: StorageService.CustomKeys) {
         UserDefaults.standard.set(object, forKey: key.rawValue)
 
+    }
+    
+    func load(for key: StorageService.CustomKeys) -> String? {
+        let value = UserDefaults.standard.string(forKey: key.rawValue)
+        return value
+    }
+    
+    func load(for key: StorageService.CustomKeys) -> Bool {
+        let value = UserDefaults.standard.bool(forKey: key.rawValue)
+        return value
+    }
+    
+    func load(for key: StorageService.CustomKeys) -> Any? {
+        let obj = UserDefaults.standard.object(forKey: key.rawValue) ?? nil
+        return obj
     }
     
     func loadArray(for key: StorageService.CustomKeys) -> [String] {
