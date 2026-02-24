@@ -19,7 +19,8 @@ import Combine
 }
 
 struct SettingsScreenView: View {
-    
+    @AppStorage("app_theme") private var appTheme: AppTheme = .system
+
     @StateObject var notificationService = NotificationService()
     
     @State private var isLightThemeOn: Bool = false
@@ -36,6 +37,13 @@ struct SettingsScreenView: View {
                 Section("Appearence") {
                     lightModeToggleView
                     showFavoritesToggleView
+                    
+                    Picker("Appearance", selection: $appTheme) {
+                        ForEach(AppTheme.allCases, id: \.self) { theme in
+                            Text(theme.rawValue.capitalized).tag(theme)
+                        }
+                    }
+                    .pickerStyle(SegmentedPickerStyle())
                 }
                 
                 Section("Preferences") {
