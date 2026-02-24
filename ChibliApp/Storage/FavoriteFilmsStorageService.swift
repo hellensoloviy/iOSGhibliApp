@@ -16,7 +16,7 @@ protocol FavoriteFilmsStorageProtocol {
 struct FavoriteFilmsStorageService: FavoriteFilmsStorageProtocol {
     
     func save(_ object: Set<String>) {
-        StorageService().save(object, for: .favoriteFilms)
+        StorageService().save(Array(object), for: .favoriteFilms)
     }
     
     func load() -> Set<String> {
