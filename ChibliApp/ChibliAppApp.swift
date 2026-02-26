@@ -15,7 +15,8 @@ struct ChibliAppApp: App {
             ThemeSwitcher {
                 ContentView(
                     filmsViewModel: FilmsViewModel(),
-                    favoritesViewModel: FavoritesViewModel(storageService: FavoriteFilmsStorageService())
+                    favoritesViewModel: FavoritesViewModel(storageService: FavoriteFilmsStorageService(),
+                                                           settingsService: SettingsStorageService())
                 )
             }
         }

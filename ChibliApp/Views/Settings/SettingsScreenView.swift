@@ -10,7 +10,7 @@ import UserNotifications
 import Combine
 
 #Preview {
-    let settings = MockSettingsStorageService(languageIndex: 0)
+    let settings = MockSettingsStorageService(languageIndex: 0, shouldShowFavoritesOnMainScreen: true)
     
     SettingsScreenView(
         viewModel: SettingsViewModel(storageService: MockFavoriteFilmsStorageService(),
@@ -68,6 +68,7 @@ struct SettingsScreenView: View {
 
         }
         .onAppear {
+            shouldShowFavoritesUIOnTheMainList = viewModel.shouldShowFavoritesOnMainScreen
             notificationService.refreshAuthorizationStatus()
             languageIndex = viewModel.restoreLanguageChoiceIndex()
         }
@@ -94,10 +95,12 @@ struct SettingsScreenView: View {
     
     private var showFavoritesToggleView: some View {
         HStack {
-            Text("Show favorites UI in the main list")
             Spacer()
             Toggle(isOn: $shouldShowFavoritesUIOnTheMainList) {
-                /// action here
+                Text("Show favorites UI on the main list")
+            }
+            .onChange(of: shouldShowFavoritesUIOnTheMainList) {
+                viewModel.saveShouldShowFavoritesOnMainScreen()
             }
         }
     }

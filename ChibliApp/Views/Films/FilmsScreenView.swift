@@ -8,9 +8,11 @@
 import SwiftUI
 
 #Preview {
+    let settings = MockSettingsStorageService(languageIndex: 0, shouldShowFavoritesOnMainScreen: true)
+
     FilmsScreenView(
         viewModel: FilmsViewModel(service: MockChibliService()),
-        favoritesViewModel: FavoritesViewModel(storageService: MockFavoriteFilmsStorageService())
+        favoritesViewModel: FavoritesViewModel(storageService: MockFavoriteFilmsStorageService(), settingsService: settings)
     )
 }
 

@@ -10,7 +10,10 @@ import SwiftUI
 #Preview {
     let service = MockChibliService()
     let film = service.fetchFilm()
-    var vm2 = FavoritesViewModel(storageService: MockFavoriteFilmsStorageService())
+    let settings = MockSettingsStorageService(languageIndex: 0, shouldShowFavoritesOnMainScreen: true)
+
+    var vm2 = FavoritesViewModel(storageService: MockFavoriteFilmsStorageService(),
+                                 settingsService: settings)
 
     NavigationStack {
         FilmDetailsView(favoritedViewModel: vm2, model: film)

@@ -8,8 +8,10 @@
 import SwiftUI
 
 #Preview {
+    let settings = MockSettingsStorageService(languageIndex: 0, shouldShowFavoritesOnMainScreen: true)
+
     let vm = SearchScreenViewModel(service: MockChibliService())
-    var vmFav = FavoritesViewModel(storageService: MockFavoriteFilmsStorageService())
+    var vmFav = FavoritesViewModel(storageService: MockFavoriteFilmsStorageService(), settingsService: settings)
 
     SearchScreenView(viewModel: vm, favoritesViewModel: vmFav)
         .task {

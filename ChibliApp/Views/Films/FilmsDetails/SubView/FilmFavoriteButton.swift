@@ -32,6 +32,11 @@ struct FilmFavoriteButton: View {
 }
 
 #Preview {
+    let settings = MockSettingsStorageService(languageIndex: 0, shouldShowFavoritesOnMainScreen: true)
+
     FilmFavoriteButton(filmID: "58611129-2dbc-4a81-a72f-77ddfc1b1b49",
-                       favoritesViewModel: FavoritesViewModel(storageService: MockFavoriteFilmsStorageService()), isLarge: false)
+                       favoritesViewModel: FavoritesViewModel(
+                        storageService: MockFavoriteFilmsStorageService(),
+                        settingsService: settings),
+                       isLarge: false)
 }

@@ -12,14 +12,21 @@ import Observation
 class FavoritesViewModel {
     
     private let storageService: FavoriteFilmsStorageProtocol
+    private let settingsService: SettingsStorageServiceProtocol
+
     private(set) var favoriteIDs: Set<String> = []
     
     
-    init(storageService: FavoriteFilmsStorageProtocol) {
+    init(storageService: FavoriteFilmsStorageProtocol, settingsService: SettingsStorageServiceProtocol) {
         self.storageService = storageService
+        self.settingsService = settingsService
     }
     
 //MARK: -
+    func shouldShowFavoritesOnMainList() -> Bool {
+        return settingsService.loadShouldShowFavoroitesOnMainScreen()
+    }
+    
     func isFavorite(filmID: String) -> Bool {
         return favoriteIDs.contains(filmID)
     }
