@@ -23,8 +23,8 @@ class FavoritesViewModel {
     }
     
 //MARK: -
-    func shouldShowFavoritesOnMainList() -> Bool {
-        return settingsService.loadShouldShowFavoroitesOnMainScreen()
+    func shouldHideFavoritesOnMainList() -> Bool {
+        return settingsService.loadShouldHideFavoroitesOnMainScreen()
     }
     
     func isFavorite(filmID: String) -> Bool {

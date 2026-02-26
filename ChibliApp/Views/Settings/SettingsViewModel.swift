@@ -18,21 +18,21 @@ class SettingsViewModel {
     private let storageService: FavoriteFilmsStorageProtocol
     private let settingsService: SettingsStorageServiceProtocol
     
-    private(set) var shouldShowFavoritesOnMainScreen: Bool
+    private(set) var shouldHideFavoritesOnMainScreen: Bool
     
     init(storageService: FavoriteFilmsStorageProtocol, settingsService: SettingsStorageServiceProtocol) {
         self.storageService = storageService
         self.settingsService = settingsService
         
-        shouldShowFavoritesOnMainScreen = settingsService.loadShouldShowFavoroitesOnMainScreen()
+        shouldHideFavoritesOnMainScreen = settingsService.loadShouldHideFavoroitesOnMainScreen()
         
     }
     
 //MARK: -
 
-    func saveShouldShowFavoritesOnMainScreen() {
-        shouldShowFavoritesOnMainScreen = !shouldShowFavoritesOnMainScreen
-        settingsService.saveShowFavoroitesOnMainScreen(shouldShowFavoritesOnMainScreen)
+    func saveshouldHideFavoritesOnMainScreen() {
+        shouldHideFavoritesOnMainScreen = !shouldHideFavoritesOnMainScreen
+        settingsService.saveHideFavoroitesOnMainScreen(shouldHideFavoritesOnMainScreen)
     }
     
     func updateLanguage(to language: String) {

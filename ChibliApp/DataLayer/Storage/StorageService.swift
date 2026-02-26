@@ -12,7 +12,7 @@ struct StorageService {
     enum CustomKeys: String  {
         case favoriteFilms = "ChibliApp.hellensoloviy.test.app.favorite.films"
         case language = "ChibliApp.hellensoloviy.test.app.use.use.selected.language"
-        case shouldShowFavoritesOnMainScreen = "ChibliApp.hellensoloviy.test.app.should.show.favorites.on.main.list"
+        case shouldHideFavoritesOnMainScreen = "ChibliApp.hellensoloviy.test.app.should.hide.favorites.on.main.list"
 
     }
     

@@ -10,7 +10,7 @@ import SwiftUI
 #Preview {
     
     var service = MockChibliService()
-    let settings = MockSettingsStorageService(languageIndex: 0, shouldShowFavoritesOnMainScreen: true)
+    let settings = MockSettingsStorageService(languageIndex: 0, shouldHideFavoritesOnMainScreen: false)
 
     var vm2 = FavoritesViewModel(storageService: MockFavoriteFilmsStorageService(),
                                  settingsService: settings)
@@ -132,7 +132,7 @@ private struct FilmRow: View {
                 .padding(.bottom)
                 
                 
-                if favoritesViewModel.shouldShowFavoritesOnMainList() {
+                if !favoritesViewModel.shouldHideFavoritesOnMainList() {
                     FilmFavoriteButton(filmID: model.id, favoritesViewModel: favoritesViewModel, isLarge: true)
                 }
                 

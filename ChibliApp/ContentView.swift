@@ -45,7 +45,7 @@ struct ContentView: View {
     @Previewable @State var vm = FilmsViewModel(service: MockChibliService())
     @Previewable @State var vmFav = FavoritesViewModel(
         storageService: MockFavoriteFilmsStorageService(),
-        settingsService: MockSettingsStorageService(languageIndex: 0, shouldShowFavoritesOnMainScreen: true))
+        settingsService: MockSettingsStorageService(languageIndex: 0, shouldHideFavoritesOnMainScreen: false))
 
     ContentView(filmsViewModel: vm, favoritesViewModel: vmFav)
     

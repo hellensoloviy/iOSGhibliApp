@@ -8,7 +8,7 @@
 import SwiftUI
 
 #Preview {
-    let settings = MockSettingsStorageService(languageIndex: 0, shouldShowFavoritesOnMainScreen: true)
+    let settings = MockSettingsStorageService(languageIndex: 0, shouldHideFavoritesOnMainScreen: false)
 
     FilmsScreenView(
         viewModel: FilmsViewModel(service: MockChibliService()),

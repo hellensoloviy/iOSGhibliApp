@@ -12,8 +12,8 @@ protocol SettingsStorageServiceProtocol {
     func saveLanguageChoice(_ lang: String)
     func getLanguageChoice() -> String?
     
-    func saveShowFavoroitesOnMainScreen(_ value: Bool)
-    func loadShouldShowFavoroitesOnMainScreen() -> Bool
+    func saveHideFavoroitesOnMainScreen(_ value: Bool)
+    func loadShouldHideFavoroitesOnMainScreen() -> Bool
     
     func clearAll()
 }
@@ -21,12 +21,12 @@ protocol SettingsStorageServiceProtocol {
 
 struct SettingsStorageService: SettingsStorageServiceProtocol {
     
-    func saveShowFavoroitesOnMainScreen(_ value: Bool) {
-        StorageService().save(value, for: .shouldShowFavoritesOnMainScreen)
+    func saveHideFavoroitesOnMainScreen(_ value: Bool) {
+        StorageService().save(value, for: .shouldHideFavoritesOnMainScreen)
     }
     
-    func loadShouldShowFavoroitesOnMainScreen() -> Bool {
-        let value: Bool = StorageService().load(for: .shouldShowFavoritesOnMainScreen)
+    func loadShouldHideFavoroitesOnMainScreen() -> Bool {
+        let value: Bool = StorageService().load(for: .shouldHideFavoritesOnMainScreen)
         return value
     }
     
@@ -51,13 +51,13 @@ struct SettingsStorageService: SettingsStorageServiceProtocol {
 class MockSettingsStorageService: SettingsStorageServiceProtocol {
     
     var languageIndex: Int
-    var shouldShowFavoritesOnMainScreen: Bool
+    var shouldHideFavoritesOnMainScreen: Bool
     var languageOptions: [String]
 
-    init(languageIndex: Int = 0, languageOptions: [String] = ["English", "Ukrainian", "Arabic", "Chinese", "Danish"], shouldShowFavoritesOnMainScreen: Bool) {
+    init(languageIndex: Int = 0, languageOptions: [String] = ["English", "Ukrainian", "Arabic", "Chinese", "Danish"], shouldHideFavoritesOnMainScreen: Bool) {
         self.languageIndex = languageIndex
         self.languageOptions = languageOptions
-        self.shouldShowFavoritesOnMainScreen = shouldShowFavoritesOnMainScreen
+        self.shouldHideFavoritesOnMainScreen = shouldHideFavoritesOnMainScreen
     }
 
     func saveLanguageChoice(_ lang: String) {
@@ -78,12 +78,12 @@ class MockSettingsStorageService: SettingsStorageServiceProtocol {
         languageIndex = 0
     }
     
-    func saveShowFavoroitesOnMainScreen(_ value: Bool) {
-        shouldShowFavoritesOnMainScreen = value
+    func saveHideFavoroitesOnMainScreen(_ value: Bool) {
+        shouldHideFavoritesOnMainScreen = value
     }
     
-    func loadShouldShowFavoroitesOnMainScreen() -> Bool {
-        return shouldShowFavoritesOnMainScreen
+    func loadShouldHideFavoroitesOnMainScreen() -> Bool {
+        return shouldHideFavoritesOnMainScreen
     }
     
     
