@@ -54,6 +54,7 @@ Empty if nothing is favorite.
 
 Here is the list of customizations and options for the user.
 Change of the theme, notification, localization, showing/hiding part of the UI.
+Here we also have an option to `reset to defaults` and clean all favorites or settings changes.
 
 <img src="https://github.com/hellensoloviy/iOSGhibliApp/blob/main/read-me-files/settings-1.png" width="200"> 
 
