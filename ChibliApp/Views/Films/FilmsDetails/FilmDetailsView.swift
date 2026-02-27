@@ -37,7 +37,7 @@ struct FilmDetailsView: View {
                     .frame(height: 300)
                     .containerRelativeFrame(.horizontal)
                 
-                HStack {
+                HStack() {
                     VStack(alignment: .leading) {
                         HStack {
                             Text(model.title)
@@ -72,6 +72,7 @@ struct FilmDetailsView: View {
                             + Text(" min")
                         }
                     }
+                    .frame(maxHeight: .infinity)
                     
                     VStack {
                         //TODO: - centering
@@ -85,8 +86,10 @@ struct FilmDetailsView: View {
                         Text(" / 100")
 
                     }
+                    .frame(maxHeight: .infinity)
                     
                 }
+                .frame(height: 120)
                 .padding()
 
                 VStack(alignment: .leading) {

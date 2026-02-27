@@ -42,7 +42,7 @@ class FilmDetailsViewModel {
             state = .loaded(loadedCast)
         } catch let error as APIError {
             self.state = .error(error.customDescription ?? "Unknown APIError appeared. Please refer to [FilmDetailsViewModel.fetch]")
-        } catch let error as CancellationError {
+        } catch let _ as CancellationError {
             self.state = .idle
         } catch {
             self.state = .error("Unknown error appeared. Please refer to [FilmDetailsViewModel.fetch]")
