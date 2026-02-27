@@ -60,7 +60,15 @@ struct FilmDetailsView: View {
                 .padding()
 
                 VStack(alignment: .leading) {
-                    
+                    Text("Description")
+                        .font(.title3)
+                
+                    Divider()
+                    Text(model.description)
+                }
+                .padding()
+                
+                VStack(alignment: .leading) {
                     Text("Characters/Cast")
                         .font(.title3)
                     
