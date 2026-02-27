@@ -12,8 +12,17 @@ struct PeopleListView: View {
     var models: [Person]
     
     var body: some View {
-        List(models) { model in
+        ForEach(models) { model in
             Text(model.name)
+            + Text(", ")
+            + Text(model.gender)
+                .italic()
+                .foregroundStyle(.brown.opacity(0.8))
+            + Text(", ")
+            + Text(model.age)
+                .italic()
+                .foregroundStyle(.gray.opacity(0.8))
+
         }
         .overlay {
             if models.isEmpty {

@@ -71,25 +71,8 @@ struct FilmDetailsView: View {
                         EmptyView()
                         
                     case .loaded(let people):
-                        //TODO: - People details view
-                        ForEach(people) { obj in
-                            NavigationLink(value: obj) {
-                                Text(obj.name)
-                            }
-                        }
-                        .overlay {
-                            if people.isEmpty {
-                                ContentUnavailableView {
-                                    Label("Nothing to show", systemImage: "moon.dust")
-                                } description: {
-                                    Text("The list of the cast is empty")
-                                } actions: {
-                                    /// nothing here for now
-                                }
-                                .offset(y: -60)
-                            }
-                        }
-                        
+                        PeopleListView(models: people)
+    
                     case .loading:
                         ProgressView {
                             Text("Loadig the details...")
