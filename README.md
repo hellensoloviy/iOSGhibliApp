@@ -9,7 +9,7 @@ Later updates are done for testing and check out purpose of different features.
 
 New features may by added later.
 
-##### Tech details 
+#### Tech details 
 - This app doesn't contain any 3rd party dependencies. All the features are implemented using a native SwiftUI element.
 - Cuncurrency implementation for all the requests, `async await`
 - `iOS Deployment Target` version 18.2
