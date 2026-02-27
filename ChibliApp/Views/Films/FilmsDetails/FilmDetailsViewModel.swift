@@ -69,7 +69,7 @@ import Playgrounds
         case .loading: print("loading")
         case .idle: print("idle")
         case .error(let error): print("Error! \(error.debugDescription)")
-        case .loaded(let result): print("Loaded! Cast count: \(result.count)")
+        case .loaded(let result): print("Loaded! Cast count: \(result.count), cast details: \n \(result.first)")
         }
         
     } catch {

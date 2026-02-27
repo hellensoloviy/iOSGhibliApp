@@ -24,13 +24,12 @@ struct Person: Codable, Identifiable, Equatable, Hashable {
     let hairColor: String
     
     let url: String
-    let species: String
     
     let films: [String]
 
     
     enum CodingKeys: String, CodingKey {
-        case id, name, gender, species, age, url, films
+        case id, name, gender, age, url, films
         
         case eyeColor = "eye_color"
         case hairColor = "hair_color"

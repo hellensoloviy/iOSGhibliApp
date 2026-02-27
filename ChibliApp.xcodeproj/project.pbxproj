@@ -25,6 +25,8 @@
 		40CC6FC82F30D42500C0938D /* Film_2.json in Resources */ = {isa = PBXBuildFile; fileRef = 40CC6FC72F30D42000C0938D /* Film_2.json */; };
 		40CC6FCA2F30EB4D00C0938D /* Person.json in Resources */ = {isa = PBXBuildFile; fileRef = 40CC6FC92F30EB4700C0938D /* Person.json */; };
 		40CC6FCF2F30ED6200C0938D /* FilmsListRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40CC6FCE2F30ED6200C0938D /* FilmsListRow.swift */; };
+		40CDF3792F51867200F864B1 /* PeopleListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40CDF3782F51867200F864B1 /* PeopleListView.swift */; };
+		40CDF3822F518D4200F864B1 /* PersonList.json in Resources */ = {isa = PBXBuildFile; fileRef = 40CDF3812F518D4200F864B1 /* PersonList.json */; };
 		40CE51982F333732004AB32D /* URL+ImageAssets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40CE51972F333732004AB32D /* URL+ImageAssets.swift */; };
 		40CE519B2F333B03004AB32D /* SettingsScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40CE519A2F333B03004AB32D /* SettingsScreenView.swift */; };
 		40CE519E2F333B8D004AB32D /* FavoritesScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40CE519D2F333B8D004AB32D /* FavoritesScreenView.swift */; };
@@ -79,6 +81,8 @@
 		40CC6FC72F30D42000C0938D /* Film_2.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = Film_2.json; sourceTree = "<group>"; };
 		40CC6FC92F30EB4700C0938D /* Person.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = Person.json; sourceTree = "<group>"; };
 		40CC6FCE2F30ED6200C0938D /* FilmsListRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilmsListRow.swift; sourceTree = "<group>"; };
+		40CDF3782F51867200F864B1 /* PeopleListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PeopleListView.swift; sourceTree = "<group>"; };
+		40CDF3812F518D4200F864B1 /* PersonList.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = PersonList.json; sourceTree = "<group>"; };
 		40CE51972F333732004AB32D /* URL+ImageAssets.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "URL+ImageAssets.swift"; sourceTree = "<group>"; };
 		40CE519A2F333B03004AB32D /* SettingsScreenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsScreenView.swift; sourceTree = "<group>"; };
 		40CE519D2F333B8D004AB32D /* FavoritesScreenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesScreenView.swift; sourceTree = "<group>"; };
@@ -227,6 +231,7 @@
 			children = (
 				40CC6FC12F30CABA00C0938D /* FilmDetailsViewModel.swift */,
 				40CC6FC32F30CC3300C0938D /* FilmDetailsView.swift */,
+				40CDF3772F51866100F864B1 /* PeopleListView */,
 				40DC8F9A2F31F3DF003C4952 /* SubView */,
 			);
 			path = FilmsDetails;
@@ -238,6 +243,14 @@
 				40CC6FCE2F30ED6200C0938D /* FilmsListRow.swift */,
 			);
 			path = SubView;
+			sourceTree = "<group>";
+		};
+		40CDF3772F51866100F864B1 /* PeopleListView */ = {
+			isa = PBXGroup;
+			children = (
+				40CDF3782F51867200F864B1 /* PeopleListView.swift */,
+			);
+			path = PeopleListView;
 			sourceTree = "<group>";
 		};
 		40CE51992F333AFC004AB32D /* Settings */ = {
@@ -312,6 +325,7 @@
 			isa = PBXGroup;
 			children = (
 				40CEC0CE2F2F61D200344280 /* SampleDataFilms.json */,
+				40CDF3812F518D4200F864B1 /* PersonList.json */,
 				40CC6FC52F30D3E300C0938D /* Film_1.json */,
 				40CC6FC72F30D42000C0938D /* Film_2.json */,
 				40CC6FC92F30EB4700C0938D /* Person.json */,
@@ -482,6 +496,7 @@
 				40CC6FC82F30D42500C0938D /* Film_2.json in Resources */,
 				40CEC0C92F2F54A100344280 /* Preview Assets.xcassets in Resources */,
 				40CC6FC02F30C3EC00C0938D /* SampleDataFilms.json in Resources */,
+				40CDF3822F518D4200F864B1 /* PersonList.json in Resources */,
 				40CC6FCA2F30EB4D00C0938D /* Person.json in Resources */,
 				40CEC0CA2F2F54A100344280 /* Assets.xcassets in Resources */,
 			);
@@ -515,6 +530,7 @@
 				40AFAEB92F4DA6AC005D4405 /* AppTheme.swift in Sources */,
 				40701A102F3E0FF9004AFD8F /* FilmFavoriteButton.swift in Sources */,
 				40CC6FC42F30CC3300C0938D /* FilmDetailsView.swift in Sources */,
+				40CDF3792F51867200F864B1 /* PeopleListView.swift in Sources */,
 				40CE51A02F333C11004AB32D /* SearchScreenView.swift in Sources */,
 				40CC6FBD2F30AC3D00C0938D /* ChibliService.swift in Sources */,
 				40CEC0D42F2F624100344280 /* Person.swift in Sources */,

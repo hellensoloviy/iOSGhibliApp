@@ -1,0 +1,40 @@
+[
+    {
+      "id": "87b68b97-3774-495b-bf80-495a5f3e672d",
+      "name": "Yasuko Kusakabe",
+      "gender": "Female",
+      "age": "Adult",
+      "eye_color": "Brown",
+      "hair_color": "Dark Brown",
+      "films": [
+        "https://ghibliapi.vercel.app/films/58611129-2dbc-4a81-a72f-77ddfc1b1b49"
+      ],
+      "species": "https://ghibliapi.vercel.app/species/af3910a6-429f-4c74-9ad5-dfe1c4aa04f2",
+      "url": "https://ghibliapi.vercel.app/people/87b68b97-3774-495b-bf80-495a5f3e672d"
+    },
+    {
+      "id": "5c83c12a-62d5-4e92-8672-33ac76ae1fa0",
+      "name": "General Mouro",
+      "gender": "Male",
+      "age": "Unspecified/Adult",
+      "eye_color": "Black",
+      "hair_color": "None",
+      "films": [
+        "https://ghibliapi.vercel.app/films/2baf70d1-42bb-4437-b551-e5fed5a87abe"
+      ],
+      "species": "https://ghibliapi.vercel.app/species/af3910a6-429f-4c74-9ad5-dfe1c4aa04f2",
+      "url": "https://ghibliapi.vercel.app/people/5c83c12a-62d5-4e92-8672-33ac76ae1fa0"
+    },
+    {
+      "id": "598f7048-74ff-41e0-92ef-87dc1ad980a9",
+      "name": "Lusheeta Toel Ul Laputa",
+      "gender": "Female",
+      "age": "13",
+      "eye_color": "Black",
+      "hair_color": "Black",
+      "films": [
+        "https://ghibliapi.vercel.app/films/2baf70d1-42bb-4437-b551-e5fed5a87abe"
+      ],
+      "species": "https://ghibliapi.vercel.app/species/af3910a6-429f-4c74-9ad5-dfe1c4aa04f2",
+      "url": "https://ghibliapi.vercel.app/people/598f7048-74ff-41e0-92ef-87dc1ad980a9"
+    }]

@@ -38,40 +38,7 @@ struct FilmDetailsView: View {
                     .containerRelativeFrame(.horizontal)
                 
                 HStack() {
-                    VStack(alignment: .leading) {
-                        HStack {
-                            Text(model.title)
-                                .font(.title2)
-                        }
-                        
-                        Divider()
-                        Spacer()
-                        
-                        HStack {
-                            Text("Released on ")
-                                .foregroundStyle(.gray.opacity(0.99))
-                            + Text(model.releaseYear)
-                        }
-                        
-                        HStack {
-                            Text("Directed by ")
-                                .foregroundStyle(.gray.opacity(0.99))
-                            + Text(model.director)
-                        }
-                        
-                        HStack {
-                            Text("Producer: ")
-                                .foregroundStyle(.gray.opacity(0.99))
-                            + Text(model.producer)
-                        }
-                        
-                        HStack {
-                            Text("Duration: ")
-                                .foregroundStyle(.gray.opacity(0.99))
-                            + Text(model.duration)
-                            + Text(" min")
-                        }
-                    }
+                    listOfDetailsView
                     .frame(maxHeight: .infinity)
                     
                     VStack {
@@ -152,5 +119,44 @@ struct FilmDetailsView: View {
 
         }
         
+    }
+    
+//MARK: - Private
+    
+    private var listOfDetailsView: some View {
+        VStack(alignment: .leading) {
+            HStack {
+                Text(model.title)
+                    .font(.title2)
+            }
+            
+            Divider()
+            Spacer()
+            
+            HStack {
+                Text("Released on ")
+                    .foregroundStyle(.gray.opacity(0.99))
+                + Text(model.releaseYear)
+            }
+            
+            HStack {
+                Text("Directed by ")
+                    .foregroundStyle(.gray.opacity(0.99))
+                + Text(model.director)
+            }
+            
+            HStack {
+                Text("Producer: ")
+                    .foregroundStyle(.gray.opacity(0.99))
+                + Text(model.producer)
+            }
+            
+            HStack {
+                Text("Duration: ")
+                    .foregroundStyle(.gray.opacity(0.99))
+                + Text(model.duration)
+                + Text(" min")
+            }
+        }
     }
 }

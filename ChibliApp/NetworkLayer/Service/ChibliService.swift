@@ -88,7 +88,21 @@ struct MockChibliService: ChibliService {
     }
     
     func fetchPersonDetails(from stringURL: String) async throws -> Person {
-        return Person(id: "", name: "", gender: "", age: "", eyeColor: "", hairColor: "", url: "", species: "", films: [])
+        return Person(id: "", name: "", gender: "", age: "", eyeColor: "", hairColor: "", url: "", films: [])
+    }
+    
+    /// Get the cast list from local file 
+    func fetchPersonDetailsList() -> [Person] {
+        let data = try! loadLocalJSONPeople()
+        
+        return data
+    }
+    
+    /// Get one person example from the local file
+    func loadPersonDetails() -> Person {
+        let data = try! loadPerson()
+        
+        return data
     }
     
     /// Film with cast present, Princess Mononoke
@@ -142,6 +156,25 @@ struct MockChibliService: ChibliService {
         
     }
     
+    private func loadPerson() throws -> Person {
+        guard let url = Bundle.main.url(forResource: "Person", withExtension: "json") else {
+            throw APIError.invalidURL
+        }
+
+        do {
+            let data = try Data(contentsOf: url)
+            let resultData = try JSONDecoder().decode(Person.self, from: data)
+            return resultData
+        } catch let error as DecodingError {
+            print("[MockChibliService] DecodingError \(error)")
+            throw APIError.decodingError(error)
+        } catch {
+            print("[MockChibliService] URLError \(error)")
+            throw APIError.networkError(error)
+        }
+        
+    }
+    
     private func loadLocalJSON() throws -> [Film] {
         guard let url = Bundle.main.url(forResource: "SampleDataFilms", withExtension: "json") else {
             throw APIError.invalidURL
@@ -150,6 +183,25 @@ struct MockChibliService: ChibliService {
         do {
             let data = try Data(contentsOf: url)
             let resultData = try JSONDecoder().decode([Film].self, from: data)
+            return resultData
+        } catch let error as DecodingError {
+            print("[MockChibliService] DecodingError \(error)")
+            throw APIError.decodingError(error)
+        } catch {
+            print("[MockChibliService] URLError \(error)")
+            throw APIError.networkError(error)
+        }
+        
+    }
+    
+    private func loadLocalJSONPeople() throws -> [Person] {
+        guard let url = Bundle.main.url(forResource: "PersonList", withExtension: "json") else {
+            throw APIError.invalidURL
+        }
+
+        do {
+            let data = try Data(contentsOf: url)
+            let resultData = try JSONDecoder().decode([Person].self, from: data)
             return resultData
         } catch let error as DecodingError {
             print("[MockChibliService] DecodingError \(error)")
