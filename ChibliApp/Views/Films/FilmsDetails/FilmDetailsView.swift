@@ -29,17 +29,35 @@ struct FilmDetailsView: View {
     let model: Film
 
     var body: some View {
-        
         ScrollView {
             VStack(alignment: .leading) {
                 
-                FilmImageView(urlPath: model.bannerImage)
-                    .frame(height: 300)
-                    .containerRelativeFrame(.horizontal)
-                
+                ZStack(alignment: .bottom) {
+                    FilmImageView(urlPath: model.bannerImage)
+                        .frame(height: 300)
+                        .containerRelativeFrame(.horizontal)
+                    HStack {
+                        Text(model.title)
+                            .font(.title2)
+                            .fontWeight(.bold)
+                            .foregroundColor(.white)
+                        Spacer()
+                    }
+                    .padding()
+                    .frame(maxWidth: .infinity)
+                    
+                    /// 'ultraThinMaterial' for an adaptive blur effect
+                    .background(.ultraThinMaterial)
+                    /// Add a mask for a progressive blur/fade effect
+                    .mask(LinearGradient(gradient:
+                                            Gradient(colors: [Color.white.opacity(0.7), Color.white]), startPoint: .top, endPoint: .bottom))
+                }
+
                 HStack() {
                     listOfDetailsView
                     .frame(maxHeight: .infinity)
+                    
+                    Spacer()
                     
                     VStack {
                         //TODO: - centering
@@ -56,7 +74,7 @@ struct FilmDetailsView: View {
                     .frame(maxHeight: .infinity)
                     
                 }
-                .frame(height: 120)
+                .frame(height: 70)
                 .padding()
 
                 VStack(alignment: .leading) {
@@ -94,6 +112,7 @@ struct FilmDetailsView: View {
                 .padding()
                 
             }
+            
             .navigationTitle(model.title)
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
@@ -116,12 +135,12 @@ struct FilmDetailsView: View {
     
     private var listOfDetailsView: some View {
         VStack(alignment: .leading) {
-            HStack {
-                Text(model.title)
-                    .font(.title2)
-            }
-            
-            Divider()
+//            HStack {
+//                Text(model.title)
+//                    .font(.title2)
+//            }
+//            
+//            Divider()
             Spacer()
             
             HStack {
