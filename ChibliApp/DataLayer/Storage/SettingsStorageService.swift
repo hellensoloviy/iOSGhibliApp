@@ -86,6 +86,5 @@ class MockSettingsStorageService: SettingsStorageServiceProtocol {
         return shouldHideFavoritesOnMainScreen
     }
     
-    
 }
 

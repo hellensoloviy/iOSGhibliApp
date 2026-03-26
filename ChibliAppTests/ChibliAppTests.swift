@@ -73,7 +73,7 @@ struct ChibliAppTests {
                 throw APIError.networkError(NSError(domain: "Test", code: -1))
             }
             
-            return Person(id: "", name: "", gender: "", age: "", eyeColor: "", hairColor: "", url: "", species: "", films: [])
+            return Person(id: "", name: "", gender: "", age: "", eyeColor: "", hairColor: "", url: "", films: [])
         }
         
         func loadLocalJSON() throws -> [Film] {
