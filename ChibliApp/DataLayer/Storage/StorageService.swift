@@ -48,7 +48,11 @@ struct StorageService {
     }
     
     func resetAll() {
-        //TODO: -
+        if let bundleID = Bundle.main.bundleIdentifier {
+            UserDefaults.standard.removePersistentDomain(forName: bundleID)
+            UserDefaults.standard.synchronize() // Ensures the changes are saved to disk immediately
+        }
+        
     }
     
 }
